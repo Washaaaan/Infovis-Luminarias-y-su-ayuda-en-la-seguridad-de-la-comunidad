@@ -11,6 +11,8 @@ enum EstadoCamara {
 	SOLO_COMUNA
 }
 
+signal comuna_seleccionada(comuna: Node)
+signal comuna_deseleccionada
 
 # ============================================================
 # CONFIGURACIÓN GENERAL
@@ -626,7 +628,8 @@ func hacer_segundo_zoom(comuna: Node) -> void:
 			rect_global
 		)
 	)
-
+	
+	destino.x += (get_viewport_rect().size.x / 6.0) / nuevo_zoom.x
 
 	# ========================================================
 	# BLOQUEAR TODO MOVIMIENTO
@@ -704,6 +707,8 @@ func hacer_segundo_zoom(comuna: Node) -> void:
 	camara_en_transicion = false
 
 	tween_camara = null
+	
+	comuna_seleccionada.emit(comuna)
 
 
 # ============================================================
@@ -825,6 +830,7 @@ func calcular_zoom_segundo_zoom(
 
 	var ancho_disponible: float = (
 		viewport_size.x *
+		(2.0 / 3.0) *
 		margen
 	)
 
@@ -1343,6 +1349,8 @@ func volver_a_zoom() -> void:
 	# --------------------------------------------------------
 
 	camara_en_transicion = true
+	
+	comuna_deseleccionada.emit() 
 
 
 	# --------------------------------------------------------

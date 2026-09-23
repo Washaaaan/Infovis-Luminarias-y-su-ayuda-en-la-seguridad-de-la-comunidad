@@ -1,36 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtcigkje4i5vo"]
+[gd_scene format=3 uid="uid://dtcigkje4i5vo"]
 
 [ext_resource type="Texture2D" uid="uid://5u6di6k0l3dy" path="res://Sprites/Región_Metropolitana.svg.png" id="1_fxve6"]
 [ext_resource type="Script" uid="uid://clqki40l54402" path="res://Scripts/Camara.gd" id="1_l4m3v"]
 [ext_resource type="Script" uid="uid://bbs613pktiavg" path="res://Scripts/ClickearComuna.gd" id="2_4nsmc"]
+[ext_resource type="Script" uid="uid://cpv27kkygp7cp" path="res://Scripts/panel_comuna.gd" id="4_isnjj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4nsmc"]
 size = Vector2(404.5, 337)
 
-[node name="Bg" type="Node2D"]
+[node name="Bg" type="Node2D" unique_id=438070891]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1862409755]
 position = Vector2(583, 323)
 zoom = Vector2(0.56, 0.56)
 script = ExtResource("1_l4m3v")
 
-[node name="Mapa" type="Node2D" parent="."]
+[node name="Mapa" type="Node2D" parent="." unique_id=522843611]
 position = Vector2(517, 327)
 scale = Vector2(2, 2)
 
-[node name="Area2D" type="Area2D" parent="Mapa"]
+[node name="Area2D" type="Area2D" parent="Mapa" unique_id=709979549]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mapa/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mapa/Area2D" unique_id=1322158248]
 visible = false
 position = Vector2(6, -3)
 shape = SubResource("RectangleShape2D_4nsmc")
 
-[node name="Sprite2D" type="Sprite2D" parent="Mapa"]
+[node name="Sprite2D" type="Sprite2D" parent="Mapa" unique_id=1585059055]
 visible = false
 scale = Vector2(0.33, 0.33)
 texture = ExtResource("1_fxve6")
 
-[node name="Forma RM" type="Polygon2D" parent="Mapa"]
+[node name="Forma RM" type="Polygon2D" parent="Mapa" unique_id=1325442343]
 visible = false
 light_mask = 0
 visibility_layer = 0
@@ -38,629 +39,644 @@ scale = Vector2(-1.29897, -2.13412)
 polygon = PackedVector2Array(148.579, -40.7662, 150.119, -39.3605, 130.103, -30.4575, 127.023, -31.3947, 127.023, -18.2745, 105.468, -21.5546, 98.5394, -20.1488, 98.5394, -17.8059, 102.389, -16.8688, 110.857, -10.3087, 105.468, -5.15435, 100.079, -1.87431, 93.9203, -0.937155, 94.6902, 6.09151, 97.7695, 7.96582, 96.2299, 14.5259, 96.9997, 20.6174, 92.3807, 22.0231, 86.9918, 21.5546, 83.1426, 24.8346, 77.7537, 25.7718, 75.4442, 30.9261, 75.4442, 30.9261, 80.0632, 39.8291, 77.7537, 42.172, 43.8808, 46.3892, 48.4998, 55.2921, 48.4998, 61.3836, 49.2697, 66.538, 47.73, 72.1609, 33.8729, 72.6295, 27.7142, 76.8467, -1.53968, 77.7839, -4.61903, 74.5038, -17.7063, 76.3781, -27.7142, 70.7552, -34.6427, 60.9151, -43.111, 67.9437, -52.349, 66.0694, -54.6586, 58.5722, -62.3569, 59.5093, -72.3649, 55.2921, -73.1347, 50.1378, -76.2141, 55.2921, -97.7695, 64.6637, -103.928, 60.4465, -107.777, 43.1091, -114.706, 35.1433, -126.254, 41.7034, -147.039, 36.0805, -153.198, 25.7718, -137.801, 5.15435, -138.571, -10.7773, -135.492, -26.2403, -142.42, -33.269, -135.492, -37.4862, -146.269, -45.9206, -140.881, -59.5093, -149.349, -67.9437, -140.111, -76.3781, -120.095, -78.721, -98.5394, -74.9724, -86.9918, -62.7894, -82.3728, -49.2006, -70.0553, -54.8236, -56.9681, -50.1378, -56.9681, -41.7034, -48.4998, -30.9261, -14.6269, -37.4862, -8.46823, -41.7034, 4.61903, -39.8291, 7.69839, -48.7321, 26.1745, -55.2921, 23.865, -61.8522, 43.111, -67.4752, 75.4442, -62.7894, 85.4521, -52.0121, 100.079, -54.355, 117.785, -48.2635, 130.103, -51.5435, 143.19, -46.3892, 150.888, -42.172)
 uv = PackedVector2Array(148.579, -40.7662, 150.119, -39.3605, 130.103, -30.4575, 127.023, -31.3947, 127.023, -18.2745, 105.468, -21.5546, 98.5394, -20.1488, 98.5394, -17.8059, 102.389, -16.8688, 110.857, -10.3087, 105.468, -5.15435, 100.079, -1.87431, 93.9203, -0.937155, 94.6902, 6.09151, 97.7695, 7.96582, 96.2299, 14.5259, 96.9997, 20.6174, 92.3807, 22.0231, 86.9918, 21.5546, 83.1426, 24.8346, 77.7537, 25.7718, 75.4442, 30.9261, 75.4442, 30.9261, 80.0632, 39.8291, 77.7537, 42.172, 43.8808, 46.3892, 48.4998, 55.2921, 48.4998, 61.3836, 49.2697, 66.538, 47.73, 72.1609, 33.8729, 72.6295, 27.7142, 76.8467, -1.53968, 77.7839, -4.61903, 74.5038, -17.7063, 76.3781, -27.7142, 70.7552, -34.6427, 60.9151, -43.111, 67.9437, -52.349, 66.0694, -54.6586, 58.5722, -62.3569, 59.5093, -72.3649, 55.2921, -73.1347, 50.1378, -76.2141, 55.2921, -97.7695, 64.6637, -103.928, 60.4465, -107.777, 43.1091, -114.706, 35.1433, -126.254, 41.7034, -147.039, 36.0805, -153.198, 25.7718, -137.801, 5.15435, -138.571, -10.7773, -135.492, -26.2403, -142.42, -33.269, -135.492, -37.4862, -146.269, -45.9206, -140.881, -59.5093, -149.349, -67.9437, -140.111, -76.3781, -120.095, -78.721, -98.5394, -74.9724, -86.9918, -62.7894, -82.3728, -49.2006, -70.0553, -54.8236, -56.9681, -50.1378, -56.9681, -41.7034, -48.4998, -30.9261, -14.6269, -37.4862, -8.46823, -41.7034, 4.61903, -39.8291, 7.69839, -48.7321, 26.1745, -55.2921, 23.865, -61.8522, 43.111, -67.4752, 75.4442, -62.7894, 85.4521, -52.0121, 100.079, -54.355, 117.785, -48.2635, 130.103, -51.5435, 143.19, -46.3892, 150.888, -42.172)
 
-[node name="Alhué" type="Node2D" parent="Mapa"]
+[node name="Alhué" type="Node2D" parent="Mapa" unique_id=2133004125]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Alhué"]
+[node name="Area2D" type="Area2D" parent="Mapa/Alhué" unique_id=1565743478]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Alhué/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Alhué/Area2D" unique_id=2025429537]
 color = Color(1, 1, 1, 0.443137)
 polygon = PackedVector2Array(-89, 86, -86, 87, -84, 85, -83, 83, -80, 83, -74, 82, -71, 79, -69, 74, -69, 70, -65, 69, -61, 71, -57, 71, -55, 69, -53, 70, -51, 70, -47, 75, -44, 76, -43, 78, -43, 80, -42, 81, -43, 83, -44, 84, -43, 85, -44, 86, -44, 88, -40, 89, -38, 89, -35, 89, -32, 89, -31, 91, -27, 91, -25, 89, -23, 88, -21, 84, -18, 83, -15, 86, -12, 87, -11, 90, -11, 92, -10, 95, -12, 97, -12, 101, -15, 103, -16, 104, -20, 103, -25, 104, -28, 106, -28, 109, -28, 113, -30, 115, -35, 115, -37, 117, -38, 121, -37, 124, -35, 127, -33, 130, -45, 139, -58, 136, -64, 141, -73, 136, -87, 135, -93, 129, -97, 127, -99, 119, -105, 118, -106, 110, -111, 107, -111, 103, -105, 99, -104, 100, -101, 99, -98, 99, -95, 95, -92, 93, -93, 90, -94, 89, -93, 86)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Alhué/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Alhué/Area2D" unique_id=386074720]
 polygon = PackedVector2Array(-89, 86, -86, 87, -84, 85, -83, 83, -80, 83, -74, 82, -71, 79, -69, 74, -69, 70, -65, 69, -61, 71, -57, 71, -55, 69, -53, 70, -51, 70, -47, 75, -44, 76, -43, 78, -43, 80, -42, 81, -43, 83, -44, 84, -43, 85, -44, 86, -44, 88, -40, 89, -38, 89, -35, 89, -32, 89, -31, 91, -27, 91, -25, 89, -23, 88, -21, 84, -18, 83, -15, 86, -12, 87, -11, 90, -11, 92, -10, 95, -12, 97, -12, 101, -15, 103, -16, 104, -20, 103, -25, 104, -28, 106, -28, 109, -28, 113, -30, 115, -35, 115, -37, 117, -38, 121, -37, 124, -35, 127, -33, 130, -45, 139, -58, 136, -64, 141, -73, 136, -87, 135, -93, 129, -97, 127, -99, 119, -105, 118, -106, 110, -111, 107, -111, 103, -105, 99, -104, 100, -101, 99, -98, 99, -95, 95, -92, 93, -93, 90, -94, 89, -93, 86)
 
-[node name="San Pedro" type="Node2D" parent="Mapa"]
+[node name="San Pedro" type="Node2D" parent="Mapa" unique_id=688541340]
 
-[node name="Area2D" type="Area2D" parent="Mapa/San Pedro"]
+[node name="Area2D" type="Area2D" parent="Mapa/San Pedro" unique_id=1198173474]
 position = Vector2(-88, -25)
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/San Pedro/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/San Pedro/Area2D" unique_id=399056798]
 color = Color(1, 1, 1, 0.239216)
 polygon = PackedVector2Array(-77, 68, -77, 92, -81, 89, -107, 109, -105, 111, -106, 116, -98, 117, -99, 123, -93, 122, -89, 125, -85, 126, -81, 131, -76, 129, -77, 126, -76, 121, -71, 126, -63, 125, -58, 126, -53, 127, -49, 130, -45, 137, -40, 140, -37, 138, -31, 138, -30, 135, -23, 132, -23, 128, -17, 124, -16, 125, -13, 124, -10, 124, -7, 120, -4, 118, -5, 115, -6, 114, -5, 111, -9, 108, -9, 106, -12, 105, -17, 100, -21, 99, -21, 97, -23, 93, -23, 89, -34, 90, -33, 93, -35, 96, -40, 93, -43, 89, -44, 86, -45, 82, -49, 77, -47, 74, -49, 72, -54, 70, -59, 71, -63, 68, -68, 68, -69, 69, -72, 66, -75, 66)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/San Pedro/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/San Pedro/Area2D" unique_id=422508313]
 polygon = PackedVector2Array(-77, 68, -77, 92, -81, 89, -107, 109, -105, 111, -106, 116, -98, 117, -99, 123, -93, 122, -89, 125, -85, 126, -81, 131, -76, 129, -77, 126, -76, 121, -71, 126, -63, 125, -58, 126, -53, 127, -49, 130, -45, 137, -40, 140, -37, 138, -31, 138, -30, 135, -23, 132, -23, 128, -17, 124, -16, 125, -13, 124, -10, 124, -7, 120, -4, 118, -5, 115, -6, 114, -5, 111, -9, 108, -9, 106, -12, 105, -17, 100, -21, 99, -21, 97, -23, 93, -23, 89, -34, 90, -33, 93, -35, 96, -40, 93, -43, 89, -44, 86, -45, 82, -49, 77, -47, 74, -49, 72, -54, 70, -59, 71, -63, 68, -68, 68, -69, 69, -72, 66, -75, 66)
 
-[node name="Melipilla" type="Node2D" parent="Mapa"]
+[node name="Melipilla" type="Node2D" parent="Mapa" unique_id=1591657145]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Melipilla"]
+[node name="Area2D" type="Area2D" parent="Mapa/Melipilla" unique_id=1432623138]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Melipilla/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Melipilla/Area2D" unique_id=121262078]
 color = Color(1, 1, 1, 0.160784)
 polygon = PackedVector2Array(-86, 87, -84, 85, -83, 83, -80, 83, -74, 82, -71, 79, -69, 74, -69, 70, -65, 69, -61, 71, -57, 71, -55, 69, -53, 70, -51, 70, -47, 75, -44, 76, -44, 75, -46, 73, -46, 71, -46, 67, -47, 66, -47, 63, -48, 61, -47, 60, -47, 57, -49, 56, -49, 53, -48, 50, -49, 49, -48, 48, -48, 43, -50, 42, -52, 43, -52, 41, -55, 42, -57, 39, -59, 39, -59, 38, -64, 37, -66, 38, -68, 38, -71, 35, -75, 35, -76, 33, -76, 31, -72, 28, -71, 26, -73, 24, -73, 22, -75, 21, -73, 20, -72, 9, -70, 8, -67, 7, -65, 9, -59, 10, -59, 8, -58, 7, -56, 7, -54, 6, -53, 4, -47, 6, -45, 5, -44, 1, -42, 0, -40, -3, -41, -4, -41, -5, -42, -6, -42, -7, -43, -7, -43, -9, -44, -11, -48, -12, -50, -11, -52, -13, -55, -14, -59, -11, -62, -10, -66, -10, -70, -10, -74, -11, -75, -10, -78, -11, -84, -10, -85, -9, -92, -10, -95, -12, -97, -11, -97, -9, -101, -6, -101, -4, -104, -4, -104, -2, -106, -2, -108, -2, -111, 0, -121, -1, -122, 3, -126, 6, -131, 6, -132, 10, -134, 14, -137, 14, -141, 17, -142, 23, -139, 25, -139, 29, -134, 33, -133, 36, -127, 38, -128, 44, -135, 46, -137, 47, -135, 49, -137, 52, -133, 57, -131, 64, -128, 68, -123, 71, -121, 68, -122, 65, -111, 64, -111, 68, -109, 72, -109, 74, -105, 75, -100, 80, -97, 81, -97, 83, -93, 86, -89, 86)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Melipilla/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Melipilla/Area2D" unique_id=1627879918]
 polygon = PackedVector2Array(-86, 87, -84, 85, -83, 83, -80, 83, -74, 82, -71, 79, -69, 74, -69, 70, -65, 69, -61, 71, -57, 71, -55, 69, -53, 70, -51, 70, -47, 75, -44, 76, -44, 75, -46, 73, -46, 71, -46, 67, -47, 66, -47, 63, -48, 61, -47, 60, -47, 57, -49, 56, -49, 53, -48, 50, -49, 49, -48, 48, -48, 43, -50, 42, -52, 43, -52, 41, -55, 42, -57, 39, -59, 39, -59, 38, -64, 37, -66, 38, -68, 38, -71, 35, -75, 35, -76, 33, -76, 31, -72, 28, -71, 26, -73, 24, -73, 22, -75, 21, -73, 20, -72, 9, -70, 8, -67, 7, -65, 9, -59, 10, -59, 8, -58, 7, -56, 7, -54, 6, -53, 4, -47, 6, -45, 5, -44, 1, -42, 0, -40, -3, -41, -4, -41, -5, -42, -6, -42, -7, -43, -7, -43, -9, -44, -11, -48, -12, -50, -11, -52, -13, -55, -14, -59, -11, -62, -10, -66, -10, -70, -10, -74, -11, -75, -10, -78, -11, -84, -10, -85, -9, -92, -10, -95, -12, -97, -11, -97, -9, -101, -6, -101, -4, -104, -4, -104, -2, -106, -2, -108, -2, -111, 0, -121, -1, -122, 3, -126, 6, -131, 6, -132, 10, -134, 14, -137, 14, -141, 17, -142, 23, -139, 25, -139, 29, -134, 33, -133, 36, -127, 38, -128, 44, -135, 46, -137, 47, -135, 49, -137, 52, -133, 57, -131, 64, -128, 68, -123, 71, -121, 68, -122, 65, -111, 64, -111, 68, -109, 72, -109, 74, -105, 75, -100, 80, -97, 81, -97, 83, -93, 86, -89, 86)
 
-[node name="Isla de Maipo" type="Node2D" parent="Mapa"]
+[node name="Isla de Maipo" type="Node2D" parent="Mapa" unique_id=1303137900]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Isla de Maipo"]
+[node name="Area2D" type="Area2D" parent="Mapa/Isla de Maipo" unique_id=36306066]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Isla de Maipo/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Isla de Maipo/Area2D" unique_id=1851570647]
 color = Color(1, 1, 1, 0.156863)
 polygon = PackedVector2Array(-76, 31, -76, 33, -75, 35, -71, 35, -68, 38, -66, 38, -64, 37, -59, 38, -59, 39, -57, 39, -55, 42, -52, 41, -52, 43, -50, 42, -48, 43, -48, 47, -48, 48, -47, 47, -45, 46, -43, 46, -42, 47, -41, 47, -39, 47, -38, 48, -36, 47, -35, 46, -35, 40, -34, 41, -33, 43, -34, 44, -33, 44, -34, 46, -32, 47, -32, 49, -31, 48, -28, 48, -27, 48, -25, 48, -24, 46, -22, 45, -21, 42, -20, 41, -16, 37, -18, 35, -17, 33, -16, 32, -17, 28, -19, 28, -22, 25, -22, 27, -23, 27, -33, 23, -33, 24, -35, 27, -35, 28, -44, 28, -44, 29, -46, 29, -47, 29, -50, 29, -52, 29, -56, 27, -60, 28, -61, 29, -68, 29, -71, 27, -71, 26, -72, 28)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Isla de Maipo/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Isla de Maipo/Area2D" unique_id=1742543341]
 polygon = PackedVector2Array(-76, 31, -76, 33, -75, 35, -71, 35, -68, 38, -66, 38, -64, 37, -59, 38, -59, 39, -57, 39, -55, 42, -52, 41, -52, 43, -50, 42, -48, 43, -48, 47, -48, 48, -47, 47, -45, 46, -43, 46, -42, 47, -41, 47, -39, 47, -38, 48, -36, 47, -35, 46, -35, 40, -34, 41, -33, 43, -34, 44, -33, 44, -34, 46, -32, 47, -32, 49, -31, 48, -28, 48, -27, 48, -25, 48, -24, 46, -22, 45, -21, 42, -20, 41, -16, 37, -18, 35, -17, 33, -16, 32, -17, 28, -19, 28, -22, 25, -22, 27, -23, 27, -33, 23, -33, 24, -35, 27, -35, 28, -44, 28, -44, 29, -46, 29, -47, 29, -50, 29, -52, 29, -56, 27, -60, 28, -61, 29, -68, 29, -71, 27, -71, 26, -72, 28)
 
-[node name="El Monte" type="Node2D" parent="Mapa"]
+[node name="El Monte" type="Node2D" parent="Mapa" unique_id=96182248]
 
-[node name="Area2D" type="Area2D" parent="Mapa/El Monte"]
+[node name="Area2D" type="Area2D" parent="Mapa/El Monte" unique_id=1915320470]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/El Monte/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/El Monte/Area2D" unique_id=364951929]
 color = Color(1, 1, 1, 0.0941176)
 polygon = PackedVector2Array(-75, 21, -73, 20, -72, 9, -67, 7, -65, 9, -59, 10, -59, 8, -58, 7, -56, 7, -54, 6, -53, 4, -47, 6, -47, 7, -45, 10, -45, 12, -41, 13, -40, 15, -41, 16, -43, 18, -47, 20, -51, 24, -53, 24, -54, 26, -56, 26, -56, 27, -60, 28, -61, 29, -68, 29, -71, 27, -71, 26, -73, 24, -73, 22)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/El Monte/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/El Monte/Area2D" unique_id=1679213310]
 polygon = PackedVector2Array(-75, 21, -73, 20, -72, 9, -67, 7, -65, 9, -59, 10, -59, 8, -58, 7, -56, 7, -54, 6, -53, 4, -47, 6, -47, 7, -45, 10, -45, 12, -41, 13, -40, 15, -41, 16, -43, 18, -47, 20, -51, 24, -53, 24, -54, 26, -56, 26, -56, 27, -60, 28, -61, 29, -68, 29, -71, 27, -71, 26, -73, 24, -73, 22)
 
-[node name="Talagante" type="Node2D" parent="Mapa"]
+[node name="Talagante" type="Node2D" parent="Mapa" unique_id=482556196]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Talagante"]
+[node name="Area2D" type="Area2D" parent="Mapa/Talagante" unique_id=1475048839]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Talagante/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Talagante/Area2D" unique_id=1755463566]
 color = Color(1, 1, 1, 0.133333)
 polygon = PackedVector2Array(-56, 26, -56, 27, -52, 29, -44, 29, -44, 28, -35, 28, -35, 27, -33, 24, -33, 23, -23, 27, -22, 27, -22, 25, -19, 28, -17, 28, -16, 28, -15, 29, -14, 29, -14, 27, -11, 23, -11, 22, -13, 17, -13, 16, -14, 15, -15, 10, -17, 10, -19, 15, -26, 12, -23, 9, -25, 9, -27, 8, -33, 9, -35, 9, -36, 10, -37, 10, -40, 10, -40, 12, -44, 11, -45, 10, -45, 12, -41, 13, -40, 15, -43, 18, -47, 20, -51, 24, -53, 24, -54, 26)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Talagante/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Talagante/Area2D" unique_id=780239255]
 polygon = PackedVector2Array(-56, 26, -56, 27, -52, 29, -44, 29, -44, 28, -35, 28, -35, 27, -33, 24, -33, 23, -23, 27, -22, 27, -22, 25, -19, 28, -17, 28, -16, 28, -15, 29, -14, 29, -14, 27, -11, 23, -11, 22, -13, 17, -13, 16, -14, 15, -15, 10, -17, 10, -19, 15, -26, 12, -23, 9, -25, 9, -27, 8, -33, 9, -35, 9, -36, 10, -37, 10, -40, 10, -40, 12, -44, 11, -45, 10, -45, 12, -41, 13, -40, 15, -43, 18, -47, 20, -51, 24, -53, 24, -54, 26)
 
-[node name="Lo Prado" type="Node2D" parent="Mapa"]
+[node name="Lo Prado" type="Node2D" parent="Mapa" unique_id=1373851478]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Lo Prado"]
+[node name="Area2D" type="Area2D" parent="Mapa/Lo Prado" unique_id=1460042810]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Lo Prado/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Lo Prado/Area2D" unique_id=1677979759]
 color = Color(1, 1, 1, 0.145098)
 polygon = PackedVector2Array(5, -34, 5, -39, 2, -39, 2, -38, 1, -39, -2, -39, -2, -36, -2, -35, 0, -34, 0, -35, 3, -34)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Lo Prado/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Lo Prado/Area2D" unique_id=1523711077]
 polygon = PackedVector2Array(5, -34, 5, -39, 2, -39, 2, -38, 1, -39, -2, -39, -2, -36, -2, -35, 0, -34, 0, -35, 3, -34)
 
-[node name="Maria Pinto" type="Node2D" parent="Mapa"]
+[node name="Maria Pinto" type="Node2D" parent="Mapa" unique_id=1734244462]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Maria Pinto"]
+[node name="Area2D" type="Area2D" parent="Mapa/Maria Pinto" unique_id=247506761]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Maria Pinto/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Maria Pinto/Area2D" unique_id=462589799]
 color = Color(1, 1, 1, 0.203922)
 polygon = PackedVector2Array(-121, -1, -111, 0, -108, -2, -104, -2, -104, -4, -101, -4, -101, -6, -97, -9, -97, -11, -95, -12, -92, -10, -85, -9, -84, -10, -78, -11, -75, -10, -74, -11, -70, -10, -66, -10, -62, -10, -59, -11, -55, -14, -56, -14, -60, -17, -62, -21, -65, -23, -66, -24, -66, -27, -69, -31, -67, -32, -66, -37, -66, -38, -68, -38, -72, -35, -74, -35, -75, -36, -79, -34, -88, -35, -90, -33, -92, -35, -101, -38, -103, -41, -108, -43, -111, -44, -113, -45, -116, -44, -119, -45, -121, -46, -123, -44, -125, -42, -124, -38, -123, -35, -124, -30, -123, -28, -126, -25, -126, -22, -125, -19, -125, -16, -125, -14, -122, -13, -121, -9, -121, -6, -121, -4, -121, -2)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Maria Pinto/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Maria Pinto/Area2D" unique_id=879270549]
 polygon = PackedVector2Array(-121, -1, -111, 0, -108, -2, -104, -2, -104, -4, -101, -4, -101, -6, -97, -9, -97, -11, -95, -12, -92, -10, -85, -9, -84, -10, -78, -11, -75, -10, -74, -11, -70, -10, -66, -10, -62, -10, -59, -11, -55, -14, -56, -14, -60, -17, -62, -21, -65, -23, -66, -24, -66, -27, -69, -31, -67, -32, -66, -37, -66, -38, -68, -38, -72, -35, -74, -35, -75, -36, -79, -34, -88, -35, -90, -33, -92, -35, -101, -38, -103, -41, -108, -43, -111, -44, -113, -45, -116, -44, -119, -45, -121, -46, -123, -44, -125, -42, -124, -38, -123, -35, -124, -30, -123, -28, -126, -25, -126, -22, -125, -19, -125, -16, -125, -14, -122, -13, -121, -9, -121, -6, -121, -4, -121, -2)
 
-[node name="San Bernardo" type="Node2D" parent="Mapa"]
+[node name="San Bernardo" type="Node2D" parent="Mapa" unique_id=688327181]
 
-[node name="Area2D" type="Area2D" parent="Mapa/San Bernardo"]
+[node name="Area2D" type="Area2D" parent="Mapa/San Bernardo" unique_id=1423911102]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/San Bernardo/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/San Bernardo/Area2D" unique_id=2081434071]
 color = Color(1, 1, 1, 0.172549)
 polygon = PackedVector2Array(-16, 37, -18, 35, -17, 33, -16, 32, -17, 28, -16, 28, -15, 29, -14, 29, -14, 27, -11, 23, -11, 22, -13, 17, -13, 16, -12, 16, -12, 15, -10, 13, -8, 13, -7, 14, -4, 15, -1, 15, 0, 13, 0, 10, -1, 10, -1, 8, -2, 8, -4, 6, -4, 5, -3, 5, -2, 4, -3, 3, -3, 1, -4, 1, -1, -1, -4, -4, -4, -6, -7, -7, -6, -7, -4, -11, -2, -13, -1, -15, 1, -18, 4, -17, 7, -16, 9, -15, 10, -14, 8, -11, 8, -10, 7, -11, 7, -10, 8, -8, 6, -6, 8, -6, 10, -5, 12, -4, 14, -4, 14, -2, 13, 2, 18, 2, 18, 5, 18, 6, 18, 7, 21, 7, 21, 8, 21, 9, 20, 10, 19, 11, 17, 11, 15, 12, 14, 14, 12, 14, 12, 15, 11, 14, 11, 15, 9, 15, 8, 15, 5, 16, 4, 17, 4, 20, 3, 21, 2, 22, 0, 22, -7, 27, -8, 27, -9, 29, -11, 31, -12, 31, -12, 32, -13, 33, -14, 34, -15, 36)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/San Bernardo/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/San Bernardo/Area2D" unique_id=898063159]
 polygon = PackedVector2Array(-16, 37, -18, 35, -17, 33, -16, 32, -17, 28, -16, 28, -15, 29, -14, 29, -14, 27, -11, 23, -11, 22, -13, 17, -13, 16, -12, 16, -12, 15, -10, 13, -8, 13, -7, 14, -4, 15, -1, 15, 0, 13, 0, 10, -1, 10, -1, 8, -2, 8, -4, 6, -4, 5, -3, 5, -2, 4, -3, 3, -3, 1, -4, 1, -1, -1, -4, -4, -4, -6, -7, -7, -6, -7, -4, -11, -2, -13, -1, -15, 1, -18, 4, -17, 7, -16, 9, -15, 10, -14, 8, -11, 8, -10, 7, -11, 7, -10, 8, -8, 6, -6, 8, -6, 10, -5, 12, -4, 14, -4, 14, -2, 13, 2, 18, 2, 18, 5, 18, 6, 18, 7, 21, 7, 21, 8, 21, 9, 20, 10, 19, 11, 17, 11, 15, 12, 14, 14, 12, 14, 12, 15, 11, 14, 11, 15, 9, 15, 8, 15, 5, 16, 4, 17, 4, 20, 3, 21, 2, 22, 0, 22, -7, 27, -8, 27, -9, 29, -11, 31, -12, 31, -12, 32, -13, 33, -14, 34, -15, 36)
 
-[node name="Calera de Tango" type="Node2D" parent="Mapa"]
+[node name="Calera de Tango" type="Node2D" parent="Mapa" unique_id=406588683]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Calera de Tango"]
+[node name="Area2D" type="Area2D" parent="Mapa/Calera de Tango" unique_id=795186914]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Calera de Tango/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Calera de Tango/Area2D" unique_id=414614245]
 color = Color(1, 1, 1, 0.0784314)
 polygon = PackedVector2Array(-17, 10, -19, 15, -26, 12, -23, 9, -17, 2, -18, 1, -17, 0, -16, -1, -15, -1, -13, -6, -11, -5, -10, -7, -7, -7, -4, -6, -4, -4, -2, -2, -1, -1, -4, 1, -3, 1, -3, 3, -2, 4, -3, 5, -4, 5, -4, 6, -2, 8, -1, 8, -1, 10, 0, 10, 0, 13, -1, 15, -4, 15, -7, 14, -8, 13, -10, 13, -12, 15, -12, 16, -13, 16, -14, 15, -15, 10)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Calera de Tango/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Calera de Tango/Area2D" unique_id=453347609]
 polygon = PackedVector2Array(-17, 10, -19, 15, -26, 12, -23, 9, -17, 2, -18, 1, -17, 0, -16, -1, -15, -1, -13, -6, -11, -5, -10, -7, -7, -7, -4, -6, -4, -4, -2, -2, -1, -1, -4, 1, -3, 1, -3, 3, -2, 4, -3, 5, -4, 5, -4, 6, -2, 8, -1, 8, -1, 10, 0, 10, 0, 13, -1, 15, -4, 15, -7, 14, -8, 13, -10, 13, -12, 15, -12, 16, -13, 16, -14, 15, -15, 10)
 
-[node name="Estación Central" type="Node2D" parent="Mapa"]
+[node name="Estación Central" type="Node2D" parent="Mapa" unique_id=276495708]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Estación Central"]
+[node name="Area2D" type="Area2D" parent="Mapa/Estación Central" unique_id=1252439091]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Estación Central/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Estación Central/Area2D" unique_id=1846225675]
 color = Color(1, 1, 1, 0.203922)
 polygon = PackedVector2Array(12, -30, 10, -31, 10, -37, 8, -37, 8, -36, 5, -36, 5, -34, 3, -34, 0, -35, 0, -31, 2, -30, 4, -28, 9, -30)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Estación Central/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Estación Central/Area2D" unique_id=1493463172]
 polygon = PackedVector2Array(12, -30, 10, -31, 10, -37, 8, -37, 8, -36, 5, -36, 5, -34, 3, -34, 0, -35, 0, -31, 2, -30, 4, -28, 9, -30)
 
-[node name="Pirque" type="Node2D" parent="Mapa"]
+[node name="Pirque" type="Node2D" parent="Mapa" unique_id=125897473]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Pirque"]
+[node name="Area2D" type="Area2D" parent="Mapa/Pirque" unique_id=514855236]
 script = ExtResource("2_4nsmc")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Pirque/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Pirque/Area2D" unique_id=1346844554]
 polygon = PackedVector2Array(60, 59, 63, 57, 64, 55, 66, 55, 67, 49, 66, 39, 68, 34, 66, 30, 67, 24, 59, 20, 60, 17, 61, 13, 63, 13, 65, 10, 64, 8, 62, 7, 61, 3, 59, 4, 58, -6, 56, -6, 54, -4, 47, -1, 46, 1, 45, 1, 44, 3, 43, 2, 43, 4, 34, 5, 31, 8, 28, 9, 23, 9, 21, 9, 20, 10, 20, 12, 19, 13, 16, 15, 17, 18, 19, 22, 21, 24, 23, 26, 24, 28, 25, 30, 25, 33, 26, 35, 28, 37, 29, 42, 31, 43, 32, 42, 34, 43, 36, 43, 41, 47, 40, 48, 42, 50, 42, 51, 44, 54, 45, 53, 47, 54, 50, 53, 51, 54, 52, 55, 52, 57, 53, 58, 53, 61, 53, 63, 55, 62, 57, 63, 59, 61)
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Pirque/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Pirque/Area2D" unique_id=692051955]
 color = Color(1, 1, 1, 0.105882)
 polygon = PackedVector2Array(60, 59, 63, 57, 64, 55, 66, 55, 67, 49, 66, 39, 68, 34, 66, 30, 67, 24, 59, 20, 60, 17, 61, 13, 63, 13, 65, 10, 64, 8, 62, 7, 61, 3, 59, 4, 58, -6, 56, -6, 54, -4, 47, -1, 46, 1, 45, 1, 44, 3, 43, 2, 43, 4, 34, 5, 31, 8, 28, 9, 23, 9, 21, 9, 20, 10, 20, 12, 19, 13, 16, 15, 17, 18, 19, 22, 21, 24, 23, 26, 24, 28, 25, 30, 25, 33, 26, 35, 28, 37, 29, 42, 31, 43, 32, 42, 34, 43, 36, 43, 41, 47, 40, 48, 42, 50, 42, 51, 44, 54, 45, 53, 47, 54, 50, 53, 51, 54, 52, 55, 52, 57, 53, 58, 53, 61, 53, 63, 55, 62, 57, 63, 59, 61)
 
-[node name="Tiltil" type="Node2D" parent="Mapa"]
+[node name="Tiltil" type="Node2D" parent="Mapa" unique_id=1954350459]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Tiltil"]
+[node name="Area2D" type="Area2D" parent="Mapa/Tiltil" unique_id=23003308]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Tiltil/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Tiltil/Area2D" unique_id=730676374]
 color = Color(1, 1, 1, 0.109804)
 polygon = PackedVector2Array(-32, -87, -30, -87, -28, -88, -27, -91, -27, -93, -25, -95, -26, -97, -25, -98, -22, -98, -20, -98, -19, -99, -16, -101, -14, -100, -13, -98, -11, -98, -12, -99, -13, -99, -13, -100, -12, -101, -7, -99, -6, -99, -4, -101, -2, -101, -3, -103, -3, -106, -6, -108, -7, -111, -6, -114, -7, -117, -5, -121, -5, -124, -7, -128, -10, -129, -7, -131, -8, -133, -7, -136, -6, -138, -7, -140, -9, -145, -6, -148, -1, -151, 0, -153, 4, -155, 2, -156, 1, -157, 1, -161, -4, -165, -10, -162, -16, -164, -20, -163, -25, -163, -27, -163, -31, -162, -33, -160, -37, -161, -42, -153, -46, -153, -50, -151, -62, -151, -63, -146, -62, -144, -64, -143, -61, -139, -58, -132, -60, -127, -62, -125, -62, -123, -60, -121, -61, -116, -59, -106, -55, -100, -56, -97, -53, -97, -52, -99, -51, -100, -49, -99, -45, -100, -43, -99, -41, -97, -38, -98, -35, -98, -33, -97, -33, -94, -33, -90, -32, -89)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Tiltil/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Tiltil/Area2D" unique_id=546363236]
 polygon = PackedVector2Array(-32, -87, -30, -87, -28, -88, -27, -91, -27, -93, -25, -95, -26, -97, -25, -98, -22, -98, -20, -98, -19, -99, -16, -101, -14, -100, -13, -98, -11, -98, -12, -99, -13, -99, -13, -100, -12, -101, -7, -99, -6, -99, -4, -101, -2, -101, -3, -103, -3, -106, -6, -108, -7, -111, -6, -114, -7, -117, -5, -121, -5, -124, -7, -128, -10, -129, -7, -131, -8, -133, -7, -136, -6, -138, -7, -140, -9, -145, -6, -148, -1, -151, 0, -153, 4, -155, 2, -156, 1, -157, 1, -161, -4, -165, -10, -162, -16, -164, -20, -163, -25, -163, -27, -163, -31, -162, -33, -160, -37, -161, -42, -153, -46, -153, -50, -151, -62, -151, -63, -146, -62, -144, -64, -143, -61, -139, -58, -132, -60, -127, -62, -125, -62, -123, -60, -121, -61, -116, -59, -106, -55, -100, -56, -97, -53, -97, -52, -99, -51, -100, -49, -99, -45, -100, -43, -99, -41, -97, -38, -98, -35, -98, -33, -97, -33, -94, -33, -90, -32, -89)
 
-[node name="Las Condes" type="Node2D" parent="Mapa"]
+[node name="Las Condes" type="Node2D" parent="Mapa" unique_id=335711539]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Las Condes"]
+[node name="Area2D" type="Area2D" parent="Mapa/Las Condes" unique_id=443564946]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Las Condes/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Las Condes/Area2D" unique_id=1318953421]
 color = Color(1, 1, 1, 0.160784)
 polygon = PackedVector2Array(25, -46, 25, -45, 25, -44, 29, -41, 36, -41, 38, -41, 39, -40, 42, -41, 43, -40, 45, -40, 47, -38, 47, -37, 49, -34, 51, -33, 52, -31, 53, -30, 56, -30, 57, -29, 59, -28, 60, -29, 60, -32, 61, -35, 60, -42, 56, -44, 56, -49, 51, -50, 50, -53, 51, -56, 48, -57, 42, -55, 39, -52)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Las Condes/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Las Condes/Area2D" unique_id=562047381]
 polygon = PackedVector2Array(25, -46, 25, -45, 25, -44, 29, -41, 36, -41, 38, -41, 39, -40, 42, -41, 43, -40, 45, -40, 47, -38, 47, -37, 49, -34, 51, -33, 52, -31, 53, -30, 56, -30, 57, -29, 59, -28, 60, -29, 60, -32, 61, -35, 60, -42, 56, -44, 56, -49, 51, -50, 50, -53, 51, -56, 48, -57, 42, -55, 39, -52)
 
-[node name="Peñaflor" type="Node2D" parent="Mapa"]
+[node name="Peñaflor" type="Node2D" parent="Mapa" unique_id=1118539261]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Peñaflor"]
+[node name="Area2D" type="Area2D" parent="Mapa/Peñaflor" unique_id=1310439101]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Peñaflor/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Peñaflor/Area2D" unique_id=1303028182]
 color = Color(1, 1, 1, 0.12549)
 polygon = PackedVector2Array(-40, 12, -44, 11, -45, 10, -47, 7, -47, 6, -45, 5, -44, 1, -42, 0, -40, -3, -39, -2, -38, -3, -32, -3, -32, -2, -31, -4, -30, -4, -29, -5, -28, -4, -27, -5, -23, -5, -23, -4, -20, -4, -20, -3, -17, 0, -18, 1, -17, 2, -23, 9, -25, 9, -27, 8, -33, 9, -35, 9, -36, 10, -40, 10)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Peñaflor/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Peñaflor/Area2D" unique_id=216589414]
 polygon = PackedVector2Array(-40, 12, -44, 11, -45, 10, -47, 7, -47, 6, -45, 5, -44, 1, -42, 0, -40, -3, -39, -2, -38, -3, -32, -3, -32, -2, -31, -4, -30, -4, -29, -5, -28, -4, -27, -5, -23, -5, -23, -4, -20, -4, -20, -3, -17, 0, -18, 1, -17, 2, -23, 9, -25, 9, -27, 8, -33, 9, -35, 9, -36, 10, -40, 10)
 
-[node name="Vitacura" type="Node2D" parent="Mapa"]
+[node name="Vitacura" type="Node2D" parent="Mapa" unique_id=1174204349]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Vitacura"]
+[node name="Area2D" type="Area2D" parent="Mapa/Vitacura" unique_id=1973607715]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Vitacura/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Vitacura/Area2D" unique_id=499624280]
 color = Color(1, 1, 1, 0.121569)
 polygon = PackedVector2Array(24, -46, 25, -46, 39, -52, 42, -55, 37, -55, 35, -58, 31, -59, 29, -60, 29, -58, 27, -58, 26, -57, 27, -56, 26, -54, 26, -53, 25, -52, 26, -51, 25, -50, 24, -48)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Vitacura/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Vitacura/Area2D" unique_id=152982860]
 polygon = PackedVector2Array(24, -46, 25, -46, 39, -52, 42, -55, 37, -55, 35, -58, 31, -59, 29, -60, 29, -58, 27, -58, 26, -57, 27, -56, 26, -54, 26, -53, 25, -52, 26, -51, 25, -50, 24, -48)
 
-[node name="Independencia" type="Node2D" parent="Mapa"]
+[node name="Independencia" type="Node2D" parent="Mapa" unique_id=2068436084]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Independencia"]
+[node name="Area2D" type="Area2D" parent="Mapa/Independencia" unique_id=624622521]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Independencia/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Independencia/Area2D" unique_id=1938881034]
 color = Color(1, 1, 1, 0.180392)
 polygon = PackedVector2Array(12, -42, 10, -44, 10, -47, 11, -48, 14, -48, 15, -47, 16, -46, 16, -44, 16, -41, 17, -40, 19, -39)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Independencia/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Independencia/Area2D" unique_id=910973498]
 polygon = PackedVector2Array(12, -42, 10, -44, 10, -47, 11, -48, 14, -48, 15, -47, 16, -46, 16, -44, 16, -41, 17, -40, 19, -39)
 
-[node name="Providencia" type="Node2D" parent="Mapa"]
+[node name="Providencia" type="Node2D" parent="Mapa" unique_id=1863710331]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Providencia"]
+[node name="Area2D" type="Area2D" parent="Mapa/Providencia" unique_id=2111522536]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Providencia/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Providencia/Area2D" unique_id=522712148]
 color = Color(1, 1, 1, 0.0823529)
 polygon = PackedVector2Array(19, -39, 19, -41, 20, -43, 22, -44, 24, -46, 25, -46, 25, -44, 29, -41, 29, -39, 28, -37, 23, -37, 20, -36)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Providencia/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Providencia/Area2D" unique_id=1682647501]
 polygon = PackedVector2Array(19, -39, 19, -41, 20, -43, 22, -44, 24, -46, 25, -46, 25, -44, 29, -41, 29, -39, 28, -37, 23, -37, 20, -36)
 
-[node name="Ñuñoa" type="Node2D" parent="Mapa"]
+[node name="Ñuñoa" type="Node2D" parent="Mapa" unique_id=326622661]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Ñuñoa"]
+[node name="Area2D" type="Area2D" parent="Mapa/Ñuñoa" unique_id=321698425]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Ñuñoa/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Ñuñoa/Area2D" unique_id=984582538]
 color = Color(1, 1, 1, 0.176471)
 polygon = PackedVector2Array(29, -41, 29, -39, 28, -37, 27, -37, 23, -37, 20, -36, 22, -30, 25, -31, 29, -30, 31, -32, 32, -34, 32, -37, 31, -39)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Ñuñoa/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Ñuñoa/Area2D" unique_id=110085031]
 polygon = PackedVector2Array(29, -41, 29, -39, 28, -37, 27, -37, 23, -37, 20, -36, 22, -30, 25, -31, 29, -30, 31, -32, 32, -34, 32, -37, 31, -39)
 
-[node name="La Florida" type="Node2D" parent="Mapa"]
+[node name="La Florida" type="Node2D" parent="Mapa" unique_id=1509582221]
 
-[node name="Area2D" type="Area2D" parent="Mapa/La Florida"]
+[node name="Area2D" type="Area2D" parent="Mapa/La Florida" unique_id=1425238342]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/La Florida/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/La Florida/Area2D" unique_id=1992974444]
 color = Color(1, 1, 1, 0.152941)
 polygon = PackedVector2Array(59, -27, 60, -27, 60, -24, 55, -22, 53, -19, 51, -17, 49, -14, 40, -14, 38, -12, 36, -13, 33, -13, 35, -10, 30, -9, 29, -7, 27, -8, 24, -7, 24, -9, 24, -11, 24, -12, 24, -13, 24, -21, 25, -22, 29, -22, 39, -21, 40, -22, 41, -22, 43, -24, 45, -24, 47, -25, 50, -24, 51, -26, 53, -26, 54, -27, 57, -25)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/La Florida/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/La Florida/Area2D" unique_id=829678532]
 polygon = PackedVector2Array(59, -27, 60, -27, 60, -24, 55, -22, 53, -19, 51, -17, 49, -14, 40, -14, 38, -12, 36, -13, 33, -13, 35, -10, 30, -9, 29, -7, 27, -8, 24, -7, 24, -9, 24, -11, 24, -12, 24, -13, 24, -21, 25, -22, 29, -22, 39, -21, 40, -22, 41, -22, 43, -24, 45, -24, 47, -25, 50, -24, 51, -26, 53, -26, 54, -27, 57, -25)
 
-[node name="La Pintana" type="Node2D" parent="Mapa"]
+[node name="La Pintana" type="Node2D" parent="Mapa" unique_id=29231611]
 
-[node name="Area2D" type="Area2D" parent="Mapa/La Pintana"]
+[node name="Area2D" type="Area2D" parent="Mapa/La Pintana" unique_id=1304239040]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/La Pintana/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/La Pintana/Area2D" unique_id=1335910974]
 color = Color(1, 1, 1, 0.164706)
 polygon = PackedVector2Array(18, 7, 21, 7, 21, 5, 22, 1, 26, 0, 25, -3, 24, -7, 24, -9, 24, -11, 21, -10, 16, -11, 15, -10, 14, -4, 14, -2, 13, 2, 18, 2)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/La Pintana/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/La Pintana/Area2D" unique_id=239763604]
 polygon = PackedVector2Array(18, 7, 21, 7, 21, 5, 22, 1, 26, 0, 25, -3, 24, -7, 24, -9, 24, -11, 21, -10, 16, -11, 15, -10, 14, -4, 14, -2, 13, 2, 18, 2)
 
-[node name="Puente Alto" type="Node2D" parent="Mapa"]
+[node name="Puente Alto" type="Node2D" parent="Mapa" unique_id=1495858644]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Puente Alto"]
+[node name="Area2D" type="Area2D" parent="Mapa/Puente Alto" unique_id=2028563380]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Puente Alto/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Puente Alto/Area2D" unique_id=912777472]
 color = Color(1, 1, 1, 0.0901961)
 polygon = PackedVector2Array(21, 9, 21, 7, 21, 5, 22, 1, 26, 0, 25, -3, 24, -7, 27, -8, 29, -7, 30, -9, 35, -10, 33, -13, 36, -13, 38, -12, 40, -14, 45, -14, 49, -14, 47, -7, 48, -6, 47, -1, 46, 1, 45, 1, 44, 3, 43, 2, 43, 4, 34, 5, 31, 8, 28, 9)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Puente Alto/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Puente Alto/Area2D" unique_id=2046224850]
 polygon = PackedVector2Array(21, 9, 21, 7, 21, 5, 22, 1, 26, 0, 25, -3, 24, -7, 27, -8, 29, -7, 30, -9, 35, -10, 33, -13, 36, -13, 38, -12, 40, -14, 45, -14, 49, -14, 47, -7, 48, -6, 47, -1, 46, 1, 45, 1, 44, 3, 43, 2, 43, 4, 34, 5, 31, 8, 28, 9)
 
-[node name="Lo Espejo" type="Node2D" parent="Mapa"]
+[node name="Lo Espejo" type="Node2D" parent="Mapa" unique_id=1582120337]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Lo Espejo"]
+[node name="Area2D" type="Area2D" parent="Mapa/Lo Espejo" unique_id=1290514497]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Lo Espejo/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Lo Espejo/Area2D" unique_id=1426214095]
 color = Color(1, 1, 1, 0.105882)
 polygon = PackedVector2Array(9, -15, 12, -22, 7, -24, 6, -21, 5, -18, 4, -17, 7, -16)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Lo Espejo/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Lo Espejo/Area2D" unique_id=1413838868]
 polygon = PackedVector2Array(9, -15, 12, -22, 7, -24, 6, -21, 5, -18, 4, -17, 7, -16)
 
-[node name="San Miguel" type="Node2D" parent="Mapa"]
+[node name="San Miguel" type="Node2D" parent="Mapa" unique_id=992920833]
 
-[node name="Area2D" type="Area2D" parent="Mapa/San Miguel"]
+[node name="Area2D" type="Area2D" parent="Mapa/San Miguel" unique_id=894394935]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/San Miguel/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/San Miguel/Area2D" unique_id=1688105998]
 color = Color(1, 1, 1, 0.180392)
 polygon = PackedVector2Array(16, -30, 18, -30, 19, -20, 18, -20, 12, -22)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/San Miguel/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/San Miguel/Area2D" unique_id=700557964]
 polygon = PackedVector2Array(16, -30, 18, -30, 19, -20, 18, -20, 12, -22)
 
-[node name="Renca" type="Node2D" parent="Mapa"]
+[node name="Renca" type="Node2D" parent="Mapa" unique_id=931219121]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Renca"]
+[node name="Area2D" type="Area2D" parent="Mapa/Renca" unique_id=2115496101]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Renca/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Renca/Area2D" unique_id=1385056442]
 color = Color(1, 1, 1, 0.160784)
 polygon = PackedVector2Array(-11, -44, -11, -46, -5, -52, -4, -51, -2, -50, 2, -50, 3, -50, 5, -52, 7, -52, 5, -56, 10, -47, 10, -44, 12, -42, 9, -43, 5, -46, 3, -46, 1, -45, -7, -45, -8, -44)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Renca/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Renca/Area2D" unique_id=809341066]
 polygon = PackedVector2Array(-11, -44, -11, -46, -5, -52, -4, -51, -2, -50, 2, -50, 3, -50, 5, -52, 7, -52, 5, -56, 10, -47, 10, -44, 12, -42, 9, -43, 5, -46, 3, -46, 1, -45, -7, -45, -8, -44)
 
-[node name="Peñalolen" type="Node2D" parent="Mapa"]
+[node name="Peñalolen" type="Node2D" parent="Mapa" unique_id=591359184]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Peñalolen"]
+[node name="Area2D" type="Area2D" parent="Mapa/Peñalolen" unique_id=1632975536]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Peñalolen/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Peñalolen/Area2D" unique_id=825229508]
 color = Color(1, 1, 1, 0.0980392)
 polygon = PackedVector2Array(29, -22, 29, -24, 31, -28, 31, -32, 32, -34, 33, -33, 39, -33, 40, -33, 41, -35, 42, -34, 47, -34, 49, -34, 51, -33, 52, -31, 53, -30, 55, -30, 56, -30, 57, -29, 59, -28, 60, -29, 60, -28, 60, -27, 59, -27, 58, -26, 57, -25, 54, -27, 53, -26, 51, -26, 50, -24, 47, -25, 45, -24, 43, -24, 41, -22, 40, -22, 39, -21)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Peñalolen/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Peñalolen/Area2D" unique_id=1200230534]
 polygon = PackedVector2Array(29, -22, 29, -24, 31, -28, 31, -32, 32, -34, 33, -33, 39, -33, 40, -33, 41, -35, 42, -34, 47, -34, 49, -34, 51, -33, 52, -31, 53, -30, 55, -30, 56, -30, 57, -29, 59, -28, 60, -29, 60, -28, 60, -27, 59, -27, 58, -26, 57, -25, 54, -27, 53, -26, 51, -26, 50, -24, 47, -25, 45, -24, 43, -24, 41, -22, 40, -22, 39, -21)
 
-[node name="Macúl" type="Node2D" parent="Mapa"]
+[node name="Macúl" type="Node2D" parent="Mapa" unique_id=175182974]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Macúl"]
+[node name="Area2D" type="Area2D" parent="Mapa/Macúl" unique_id=649116291]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Macúl/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Macúl/Area2D" unique_id=491762113]
 color = Color(1, 1, 1, 0.180392)
 polygon = PackedVector2Array(22, -30, 25, -31, 29, -30, 31, -32, 31, -28, 29, -24, 29, -22, 25, -22, 24, -21, 23, -25)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Macúl/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Macúl/Area2D" unique_id=1099429482]
 polygon = PackedVector2Array(22, -30, 25, -31, 29, -30, 31, -32, 31, -28, 29, -24, 29, -22, 25, -22, 24, -21, 23, -25)
 
-[node name="San Joaquín" type="Node2D" parent="Mapa"]
+[node name="San Joaquín" type="Node2D" parent="Mapa" unique_id=1483921693]
 
-[node name="Area2D" type="Area2D" parent="Mapa/San Joaquín"]
+[node name="Area2D" type="Area2D" parent="Mapa/San Joaquín" unique_id=1624047634]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/San Joaquín/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/San Joaquín/Area2D" unique_id=1213984585]
 color = Color(1, 1, 1, 0.109804)
 polygon = PackedVector2Array(18, -30, 21, -31, 22, -30, 23, -25, 24, -21, 21, -20, 19, -20)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/San Joaquín/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/San Joaquín/Area2D" unique_id=1631128725]
 polygon = PackedVector2Array(18, -30, 21, -31, 22, -30, 23, -25, 24, -21, 21, -20, 19, -20)
 
-[node name="La Cisterna" type="Node2D" parent="Mapa"]
+[node name="La Cisterna" type="Node2D" parent="Mapa" unique_id=1481300091]
 
-[node name="Area2D" type="Area2D" parent="Mapa/La Cisterna"]
+[node name="Area2D" type="Area2D" parent="Mapa/La Cisterna" unique_id=588435248]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/La Cisterna/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/La Cisterna/Area2D" unique_id=568289721]
 color = Color(1, 1, 1, 0.105882)
 polygon = PackedVector2Array(10, -14, 13, -13, 16, -13, 18, -20, 12, -22, 9, -15)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/La Cisterna/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/La Cisterna/Area2D" unique_id=787348220]
 polygon = PackedVector2Array(10, -14, 13, -13, 16, -13, 18, -20, 12, -22, 9, -15)
 
-[node name="Curacaví" type="Node2D" parent="Mapa"]
+[node name="Curacaví" type="Node2D" parent="Mapa" unique_id=2135463522]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Curacaví"]
+[node name="Area2D" type="Area2D" parent="Mapa/Curacaví" unique_id=1329316513]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Curacaví/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Curacaví/Area2D" unique_id=872914467]
 color = Color(1, 1, 1, 0.137255)
 polygon = PackedVector2Array(-42, -9, -40, -11, -39, -13, -39, -16, -38, -18, -38, -20, -38, -21, -39, -22, -39, -23, -38, -24, -37, -26, -38, -26, -39, -28, -40, -29, -42, -29, -43, -30, -44, -31, -44, -33, -45, -34, -44, -36, -45, -37, -44, -38, -43, -41, -44, -43, -44, -45, -45, -46, -44, -48, -44, -50, -46, -50, -48, -51, -48, -53, -51, -55, -51, -57, -54, -59, -54, -62, -56, -63, -54, -65, -54, -68, -52, -68, -51, -70, -49, -70, -48, -71, -49, -72, -50, -72, -50, -75, -51, -76, -51, -79, -53, -84, -54, -86, -54, -87, -55, -87, -56, -88, -55, -91, -55, -94, -56, -97, -60, -96, -62, -96, -61, -94, -63, -95, -65, -94, -67, -95, -68, -90, -70, -89, -72, -91, -79, -91, -80, -89, -83, -88, -86, -90, -89, -89, -93, -90, -96, -88, -99, -89, -99, -87, -102, -85, -102, -82, -99, -70, -96, -66, -97, -64, -98, -61, -100, -57, -100, -53, -105, -50, -108, -51, -113, -45, -111, -44, -108, -43, -103, -41, -101, -38, -92, -35, -90, -33, -88, -35, -79, -34, -75, -36, -74, -35, -72, -35, -68, -38, -66, -38, -66, -37, -67, -32, -69, -31, -66, -27, -66, -24, -65, -23, -62, -21, -60, -17, -56, -14, -55, -14, -52, -13, -50, -11, -48, -12, -44, -11, -43, -9)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Curacaví/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Curacaví/Area2D" unique_id=317199510]
 polygon = PackedVector2Array(-42, -9, -40, -11, -39, -13, -39, -16, -38, -18, -38, -20, -38, -21, -39, -22, -39, -23, -38, -24, -37, -26, -38, -26, -39, -28, -40, -29, -42, -29, -43, -30, -44, -31, -44, -33, -45, -34, -44, -36, -45, -37, -44, -38, -43, -41, -44, -43, -44, -45, -45, -46, -44, -48, -44, -50, -46, -50, -48, -51, -48, -53, -51, -55, -51, -57, -54, -59, -54, -62, -56, -63, -54, -65, -54, -68, -52, -68, -51, -70, -49, -70, -48, -71, -49, -72, -50, -72, -50, -75, -51, -76, -51, -79, -53, -84, -54, -86, -54, -87, -55, -87, -56, -88, -55, -91, -55, -94, -56, -97, -60, -96, -62, -96, -61, -94, -63, -95, -65, -94, -67, -95, -68, -90, -70, -89, -72, -91, -79, -91, -80, -89, -83, -88, -86, -90, -89, -89, -93, -90, -96, -88, -99, -89, -99, -87, -102, -85, -102, -82, -99, -70, -96, -66, -97, -64, -98, -61, -100, -57, -100, -53, -105, -50, -108, -51, -113, -45, -111, -44, -108, -43, -103, -41, -101, -38, -92, -35, -90, -33, -88, -35, -79, -34, -75, -36, -74, -35, -72, -35, -68, -38, -66, -38, -66, -37, -67, -32, -69, -31, -66, -27, -66, -24, -65, -23, -62, -21, -60, -17, -56, -14, -55, -14, -52, -13, -50, -11, -48, -12, -44, -11, -43, -9)
 
-[node name="El Bosque" type="Node2D" parent="Mapa"]
+[node name="El Bosque" type="Node2D" parent="Mapa" unique_id=1227304189]
 
-[node name="Area2D" type="Area2D" parent="Mapa/El Bosque"]
+[node name="Area2D" type="Area2D" parent="Mapa/El Bosque" unique_id=560918915]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/El Bosque/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/El Bosque/Area2D" unique_id=788504411]
 color = Color(1, 1, 1, 0.105882)
 polygon = PackedVector2Array(14, -4, 12, -4, 10, -5, 8, -6, 6, -6, 8, -8, 7, -10, 7, -11, 8, -10, 8, -11, 10, -14, 13, -13, 16, -13, 16, -11, 15, -10)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/El Bosque/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/El Bosque/Area2D" unique_id=2124206845]
 polygon = PackedVector2Array(14, -4, 12, -4, 10, -5, 8, -6, 6, -6, 8, -8, 7, -10, 7, -11, 8, -10, 8, -11, 10, -14, 13, -13, 16, -13, 16, -11, 15, -10)
 
-[node name="Paine" type="Node2D" parent="Mapa"]
+[node name="Paine" type="Node2D" parent="Mapa" unique_id=654724210]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Paine"]
+[node name="Area2D" type="Area2D" parent="Mapa/Paine" unique_id=1886441422]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Paine/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Paine/Area2D" unique_id=1188668037]
 color = Color(1, 1, 1, 0.121569)
 polygon = PackedVector2Array(53, 63, 48, 63, 48, 65, 46, 69, 41, 69, 38, 67, 35, 69, 33, 71, 29, 70, 26, 72, 24, 73, 23, 75, 20, 76, 20, 80, 16, 82, 13, 81, 7, 73, 4, 76, 0, 78, -4, 82, -11, 81, -13, 80, -14, 83, -16, 85, -18, 83, -21, 84, -23, 88, -25, 89, -27, 91, -31, 91, -32, 89, -35, 89, -38, 89, -40, 89, -44, 88, -44, 86, -43, 85, -44, 84, -43, 83, -42, 81, -43, 80, -43, 78, -44, 76, -44, 75, -46, 73, -46, 71, -46, 67, -47, 66, -47, 63, -48, 61, -47, 60, -47, 57, -49, 56, -49, 53, -48, 50, -49, 49, -48, 48, -47, 47, -45, 46, -43, 46, -42, 47, -39, 47, -38, 48, -36, 47, -35, 46, -35, 40, -34, 41, -33, 43, -34, 44, -33, 44, -34, 46, -32, 47, -32, 49, -29, 51, -27, 49, -24, 51, -22, 52, -21, 53, -19, 55, -16, 54, -11, 54, -9, 55, -5, 50, -4, 51, -2, 41, 0, 41, 0, 44, 7, 44, 8, 45, 10, 44, 10, 37, 15, 36, 17, 33, 19, 34, 20, 35, 21, 34, 22, 33, 23, 32, 25, 32, 25, 33, 26, 35, 28, 37, 29, 42, 31, 43, 32, 42, 34, 43, 36, 43, 41, 47, 40, 48, 42, 50, 42, 51, 44, 54, 45, 53, 47, 54, 50, 53, 51, 54, 52, 55, 52, 57, 53, 58, 53, 61)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Paine/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Paine/Area2D" unique_id=231054833]
 polygon = PackedVector2Array(53, 63, 48, 63, 48, 65, 46, 69, 41, 69, 38, 67, 35, 69, 33, 71, 29, 70, 26, 72, 24, 73, 23, 75, 20, 76, 20, 80, 16, 82, 13, 81, 7, 73, 4, 76, 0, 78, -4, 82, -11, 81, -13, 80, -14, 83, -16, 85, -18, 83, -21, 84, -23, 88, -25, 89, -27, 91, -31, 91, -32, 89, -35, 89, -38, 89, -40, 89, -44, 88, -44, 86, -43, 85, -44, 84, -43, 83, -42, 81, -43, 80, -43, 78, -44, 76, -44, 75, -46, 73, -46, 71, -46, 67, -47, 66, -47, 63, -48, 61, -47, 60, -47, 57, -49, 56, -49, 53, -48, 50, -49, 49, -48, 48, -47, 47, -45, 46, -43, 46, -42, 47, -39, 47, -38, 48, -36, 47, -35, 46, -35, 40, -34, 41, -33, 43, -34, 44, -33, 44, -34, 46, -32, 47, -32, 49, -29, 51, -27, 49, -24, 51, -22, 52, -21, 53, -19, 55, -16, 54, -11, 54, -9, 55, -5, 50, -4, 51, -2, 41, 0, 41, 0, 44, 7, 44, 8, 45, 10, 44, 10, 37, 15, 36, 17, 33, 19, 34, 20, 35, 21, 34, 22, 33, 23, 32, 25, 32, 25, 33, 26, 35, 28, 37, 29, 42, 31, 43, 32, 42, 34, 43, 36, 43, 41, 47, 40, 48, 42, 50, 42, 51, 44, 54, 45, 53, 47, 54, 50, 53, 51, 54, 52, 55, 52, 57, 53, 58, 53, 61)
 
-[node name="Colina" type="Node2D" parent="Mapa"]
+[node name="Colina" type="Node2D" parent="Mapa" unique_id=1719596591]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Colina"]
+[node name="Area2D" type="Area2D" parent="Mapa/Colina" unique_id=1050581134]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Colina/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Colina/Area2D" unique_id=1749435559]
 color = Color(1, 1, 1, 0.105882)
 polygon = PackedVector2Array(-12, -99, -13, -99, -13, -100, -12, -101, -7, -99, -6, -99, -4, -101, -2, -101, -3, -103, -3, -106, -6, -108, -7, -111, -6, -114, -7, -117, -5, -121, -5, -124, -7, -128, -10, -129, -7, -131, -8, -133, -7, -136, -6, -138, -7, -140, -9, -145, -6, -148, -1, -151, 0, -153, 4, -155, 2, -156, 6, -157, 9, -156, 13, -157, 17, -160, 21, -160, 23, -160, 26, -159, 27, -156, 28, -153, 32, -151, 37, -143, 36, -138, 38, -136, 41, -133, 42, -130, 44, -126, 48, -127, 48, -130, 51, -130, 51, -132, 54, -139, 57, -142, 60, -142, 65, -140, 66, -137, 66, -135, 66, -133, 65, -131, 66, -129, 68, -126, 69, -124, 71, -122, 71, -120, 71, -117, 70, -116, 68, -116, 68, -115, 67, -114, 65, -113, 63, -113, 58, -109, 58, -108, 56, -107, 56, -104, 55, -103, 54, -101, 53, -101, 53, -97, 51, -95, 52, -94, 51, -90, 43, -89, 42, -87, 41, -85, 38, -85, 35, -84, 34, -84, 32, -80, 31, -79, 31, -74, 27, -72, 27, -70, 25, -69, 25, -68, 26, -65, 27, -63, 27, -62, 25, -62, 23, -61, 21, -61, 19, -62, 18, -61, 16, -61, 16, -62, 14, -64, 13, -64, 12, -64, 9, -64, 9, -65, 8, -65, 9, -66, 6, -67, 3, -68, 3, -66, 2, -66, -11, -98)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Colina/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Colina/Area2D" unique_id=429986706]
 polygon = PackedVector2Array(-12, -99, -13, -99, -13, -100, -12, -101, -7, -99, -6, -99, -4, -101, -2, -101, -3, -103, -3, -106, -6, -108, -7, -111, -6, -114, -7, -117, -5, -121, -5, -124, -7, -128, -10, -129, -7, -131, -8, -133, -7, -136, -6, -138, -7, -140, -9, -145, -6, -148, -1, -151, 0, -153, 4, -155, 2, -156, 6, -157, 9, -156, 13, -157, 17, -160, 21, -160, 23, -160, 26, -159, 27, -156, 28, -153, 32, -151, 37, -143, 36, -138, 38, -136, 41, -133, 42, -130, 44, -126, 48, -127, 48, -130, 51, -130, 51, -132, 54, -139, 57, -142, 60, -142, 65, -140, 66, -137, 66, -135, 66, -133, 65, -131, 66, -129, 68, -126, 69, -124, 71, -122, 71, -120, 71, -117, 70, -116, 68, -116, 68, -115, 67, -114, 65, -113, 63, -113, 58, -109, 58, -108, 56, -107, 56, -104, 55, -103, 54, -101, 53, -101, 53, -97, 51, -95, 52, -94, 51, -90, 43, -89, 42, -87, 41, -85, 38, -85, 35, -84, 34, -84, 32, -80, 31, -79, 31, -74, 27, -72, 27, -70, 25, -69, 25, -68, 26, -65, 27, -63, 27, -62, 25, -62, 23, -61, 21, -61, 19, -62, 18, -61, 16, -61, 16, -62, 14, -64, 13, -64, 12, -64, 9, -64, 9, -65, 8, -65, 9, -66, 6, -67, 3, -68, 3, -66, 2, -66, -11, -98)
 
-[node name="Quilicura" type="Node2D" parent="Mapa"]
+[node name="Quilicura" type="Node2D" parent="Mapa" unique_id=2004692238]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Quilicura"]
+[node name="Area2D" type="Area2D" parent="Mapa/Quilicura" unique_id=1233742427]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Quilicura/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Quilicura/Area2D" unique_id=541427297]
 color = Color(1, 1, 1, 0.2)
 polygon = PackedVector2Array(-5, -52, -6, -52, -14, -60, -14, -62, -12, -62, 0, -65, 2, -66, 3, -66, 3, -68, 9, -66, 8, -65, 9, -65, 9, -64, 10, -63, 10, -62, 8, -61, 8, -58, 9, -56, 5, -56, 7, -52, 5, -52, 3, -50, 2, -50, -2, -50, -4, -51)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Quilicura/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Quilicura/Area2D" unique_id=1091312545]
 polygon = PackedVector2Array(-5, -52, -6, -52, -14, -60, -14, -62, -12, -62, 0, -65, 2, -66, 3, -66, 3, -68, 9, -66, 8, -65, 9, -65, 9, -64, 10, -63, 10, -62, 8, -61, 8, -58, 9, -56, 5, -56, 7, -52, 5, -52, 3, -50, 2, -50, -2, -50, -4, -51)
 
-[node name="Cerronavia" type="Node2D" parent="Mapa"]
+[node name="Cerronavia" type="Node2D" parent="Mapa" unique_id=818875600]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Cerronavia"]
+[node name="Area2D" type="Area2D" parent="Mapa/Cerronavia" unique_id=685271572]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Cerronavia/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Cerronavia/Area2D" unique_id=526008148]
 color = Color(1, 1, 1, 0.145098)
 polygon = PackedVector2Array(2, -39, 2, -41, 3, -44, 2, -45, -7, -45, -8, -44, -10, -44, -11, -44, -9, -42, -8, -41, -7, -41, -2, -40, -2, -39, 1, -39, 2, -38)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Cerronavia/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Cerronavia/Area2D" unique_id=1402704175]
 polygon = PackedVector2Array(2, -39, 2, -41, 3, -44, 2, -45, -7, -45, -8, -44, -10, -44, -11, -44, -9, -42, -8, -41, -7, -41, -2, -40, -2, -39, 1, -39, 2, -38)
 
-[node name="Conchalí" type="Node2D" parent="Mapa"]
+[node name="Conchalí" type="Node2D" parent="Mapa" unique_id=613198389]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Conchalí"]
+[node name="Area2D" type="Area2D" parent="Mapa/Conchalí" unique_id=745590983]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Conchalí/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Conchalí/Area2D" unique_id=1980858693]
 color = Color(1, 1, 1, 0.137255)
 polygon = PackedVector2Array(14, -54, 9, -56, 5, -56, 10, -47, 11, -48, 14, -48)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Conchalí/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Conchalí/Area2D" unique_id=2114844760]
 polygon = PackedVector2Array(14, -54, 9, -56, 5, -56, 10, -47, 11, -48, 14, -48)
 
-[node name="Pudahuel" type="Node2D" parent="Mapa"]
+[node name="Pudahuel" type="Node2D" parent="Mapa" unique_id=2123006206]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Pudahuel"]
+[node name="Area2D" type="Area2D" parent="Mapa/Pudahuel" unique_id=2129610055]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Pudahuel/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Pudahuel/Area2D" unique_id=654553601]
 color = Color(1, 1, 1, 0.239216)
 polygon = PackedVector2Array(-23, -28, -30, -29, -31, -28, -33, -29, -34, -28, -37, -26, -38, -26, -39, -28, -40, -29, -42, -29, -44, -31, -44, -33, -45, -34, -44, -36, -45, -37, -44, -38, -43, -41, -44, -43, -44, -45, -45, -46, -44, -48, -44, -50, -43, -50, -41, -52, -39, -52, -36, -54, -35, -53, -32, -52, -27, -52, -24, -51, -23, -50, -20, -52, -18, -56, -16, -56, -14, -60, -6, -52, -5, -52, -11, -46, -11, -44, -8, -41, -7, -41, -2, -40, -2, -35, 0, -34, 0, -31, -7, -33, -7, -34, -9, -34, -10, -33, -13, -34, -22, -31)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Pudahuel/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Pudahuel/Area2D" unique_id=825228132]
 polygon = PackedVector2Array(-23, -28, -30, -29, -31, -28, -33, -29, -34, -28, -37, -26, -38, -26, -39, -28, -40, -29, -42, -29, -44, -31, -44, -33, -45, -34, -44, -36, -45, -37, -44, -38, -43, -41, -44, -43, -44, -45, -45, -46, -44, -48, -44, -50, -43, -50, -41, -52, -39, -52, -36, -54, -35, -53, -32, -52, -27, -52, -24, -51, -23, -50, -20, -52, -18, -56, -16, -56, -14, -60, -6, -52, -5, -52, -11, -46, -11, -44, -8, -41, -7, -41, -2, -40, -2, -35, 0, -34, 0, -31, -7, -33, -7, -34, -9, -34, -10, -33, -13, -34, -22, -31)
 
-[node name="Pedro Aguirre Cerda" type="Node2D" parent="Mapa"]
+[node name="Pedro Aguirre Cerda" type="Node2D" parent="Mapa" unique_id=1068894517]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Pedro Aguirre Cerda"]
+[node name="Area2D" type="Area2D" parent="Mapa/Pedro Aguirre Cerda" unique_id=1761805795]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Pedro Aguirre Cerda/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Pedro Aguirre Cerda/Area2D" unique_id=787904553]
 color = Color(1, 1, 1, 0.0980392)
 polygon = PackedVector2Array(7, -24, 9, -29, 9, -30, 16, -30, 12, -22)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Pedro Aguirre Cerda/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Pedro Aguirre Cerda/Area2D" unique_id=759285841]
 polygon = PackedVector2Array(7, -24, 9, -29, 9, -30, 16, -30, 12, -22)
 
-[node name="Recoleta" type="Node2D" parent="Mapa"]
+[node name="Recoleta" type="Node2D" parent="Mapa" unique_id=1719687795]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Recoleta"]
+[node name="Area2D" type="Area2D" parent="Mapa/Recoleta" unique_id=618699280]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Recoleta/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Recoleta/Area2D" unique_id=815917286]
 color = Color(1, 1, 1, 0.203922)
 polygon = PackedVector2Array(16, -41, 17, -40, 19, -39, 19, -41, 20, -43, 22, -44, 24, -46, 24, -48, 18, -52, 14, -54, 14, -48, 16, -46, 16, -44)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Recoleta/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Recoleta/Area2D" unique_id=41355587]
 polygon = PackedVector2Array(16, -41, 17, -40, 19, -39, 19, -41, 20, -43, 22, -44, 24, -46, 24, -48, 18, -52, 14, -54, 14, -48, 16, -46, 16, -44)
 
-[node name="La Reina" type="Node2D" parent="Mapa"]
+[node name="La Reina" type="Node2D" parent="Mapa" unique_id=892052057]
 
-[node name="Area2D" type="Area2D" parent="Mapa/La Reina"]
+[node name="Area2D" type="Area2D" parent="Mapa/La Reina" unique_id=1403664656]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/La Reina/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/La Reina/Area2D" unique_id=446670099]
 color = Color(1, 1, 1, 0.141176)
 polygon = PackedVector2Array(29, -41, 31, -39, 32, -37, 32, -34, 33, -33, 40, -33, 41, -35, 42, -34, 49, -34, 47, -37, 47, -38, 45, -40, 43, -40, 42, -41, 39, -40, 38, -41)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/La Reina/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/La Reina/Area2D" unique_id=1044078319]
 polygon = PackedVector2Array(29, -41, 31, -39, 32, -37, 32, -34, 33, -33, 40, -33, 41, -35, 42, -34, 49, -34, 47, -37, 47, -38, 45, -40, 43, -40, 42, -41, 39, -40, 38, -41)
 
-[node name="Quinta Normal" type="Node2D" parent="Mapa"]
+[node name="Quinta Normal" type="Node2D" parent="Mapa" unique_id=53828836]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Quinta Normal"]
+[node name="Area2D" type="Area2D" parent="Mapa/Quinta Normal" unique_id=1322752992]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Quinta Normal/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Quinta Normal/Area2D" unique_id=486703945]
 color = Color(1, 1, 1, 0.12549)
 polygon = PackedVector2Array(3, -44, 2, -41, 2, -39, 5, -39, 5, -36, 8, -36, 8, -39, 10, -39, 10, -41, 12, -42, 9, -43, 5, -46, 3, -46, 1, -45, 2, -45)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Quinta Normal/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Quinta Normal/Area2D" unique_id=1148112551]
 polygon = PackedVector2Array(3, -44, 2, -41, 2, -39, 5, -39, 5, -36, 8, -36, 8, -39, 10, -39, 10, -41, 12, -42, 9, -43, 5, -46, 3, -46, 1, -45, 2, -45)
 
-[node name="Huechuraba" type="Node2D" parent="Mapa"]
+[node name="Huechuraba" type="Node2D" parent="Mapa" unique_id=37944393]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Huechuraba"]
+[node name="Area2D" type="Area2D" parent="Mapa/Huechuraba" unique_id=1088747868]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Huechuraba/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Huechuraba/Area2D" unique_id=2083036058]
 color = Color(1, 1, 1, 0.121569)
 polygon = PackedVector2Array(9, -56, 8, -58, 8, -61, 10, -62, 10, -63, 9, -64, 14, -64, 16, -62, 16, -61, 18, -61, 19, -62, 21, -61, 23, -61, 25, -62, 27, -62, 29, -60, 29, -59, 29, -58, 27, -58, 26, -57, 27, -56, 26, -54, 26, -53, 25, -52, 26, -51, 25, -50, 24, -48, 18, -52, 14, -54)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Huechuraba/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Huechuraba/Area2D" unique_id=779703742]
 polygon = PackedVector2Array(9, -56, 8, -58, 8, -61, 10, -62, 10, -63, 9, -64, 14, -64, 16, -62, 16, -61, 18, -61, 19, -62, 21, -61, 23, -61, 25, -62, 27, -62, 29, -60, 29, -59, 29, -58, 27, -58, 26, -57, 27, -56, 26, -54, 26, -53, 25, -52, 26, -51, 25, -50, 24, -48, 18, -52, 14, -54)
 
-[node name="Maipú" type="Node2D" parent="Mapa"]
+[node name="Maipú" type="Node2D" parent="Mapa" unique_id=1125535870]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Maipú"]
+[node name="Area2D" type="Area2D" parent="Mapa/Maipú" unique_id=1495798078]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Maipú/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Maipú/Area2D" unique_id=648454550]
 color = Color(1, 1, 1, 0.164706)
 polygon = PackedVector2Array(-6, -7, -4, -11, -2, -13, 1, -18, 3, -20, 2, -22, -2, -21, 0, -25, 0, -28, 1, -28, 2, -30, 0, -31, -7, -33, -7, -34, -9, -34, -10, -33, -13, -34, -16, -33, -22, -31, -23, -28, -30, -29, -31, -28, -33, -29, -34, -28, -37, -26, -38, -24, -39, -23, -39, -22, -38, -21, -35, -21, -33, -19, -32, -19, -31, -17, -30, -16, -29, -17, -28, -16, -27, -16, -26, -17, -23, -15, -17, -15, -15, -17, -14, -16, -14, -15, -15, -15, -16, -14, -16, -13, -10, -7)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Maipú/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Maipú/Area2D" unique_id=147525193]
 polygon = PackedVector2Array(-6, -7, -4, -11, -2, -13, 1, -18, 3, -20, 2, -22, -2, -21, 0, -25, 0, -28, 1, -28, 2, -30, 0, -31, -7, -33, -7, -34, -9, -34, -10, -33, -13, -34, -16, -33, -22, -31, -23, -28, -30, -29, -31, -28, -33, -29, -34, -28, -37, -26, -38, -24, -39, -23, -39, -22, -38, -21, -35, -21, -33, -19, -32, -19, -31, -17, -30, -16, -29, -17, -28, -16, -27, -16, -26, -17, -23, -15, -17, -15, -15, -17, -14, -16, -14, -15, -15, -15, -16, -14, -16, -13, -10, -7)
 
-[node name="Lampa" type="Node2D" parent="Mapa"]
+[node name="Lampa" type="Node2D" parent="Mapa" unique_id=1162802320]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Lampa"]
+[node name="Area2D" type="Area2D" parent="Mapa/Lampa" unique_id=108510761]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Lampa/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Lampa/Area2D" unique_id=771568168]
 color = Color(1, 1, 1, 0.117647)
 polygon = PackedVector2Array(-56, -97, -53, -97, -52, -99, -51, -100, -49, -99, -45, -100, -43, -99, -41, -97, -38, -98, -35, -98, -33, -97, -33, -94, -33, -90, -32, -89, -32, -87, -30, -87, -28, -88, -27, -91, -27, -93, -25, -95, -26, -97, -25, -98, -22, -98, -20, -98, -19, -99, -16, -101, -14, -100, -13, -98, -11, -98, 2, -66, 0, -65, -12, -62, -14, -62, -14, -60, -16, -56, -18, -56, -20, -52, -23, -50, -24, -51, -27, -52, -32, -52, -35, -53, -36, -54, -39, -52, -41, -52, -43, -50, -44, -50, -46, -50, -48, -51, -48, -53, -51, -55, -51, -57, -54, -59, -54, -62, -56, -63, -54, -65, -54, -68, -52, -68, -51, -70, -49, -70, -48, -71, -49, -72, -50, -72, -50, -75, -51, -76, -51, -79, -54, -86, -54, -87, -55, -87, -56, -88, -55, -91, -55, -94)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Lampa/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Lampa/Area2D" unique_id=716399574]
 polygon = PackedVector2Array(-56, -97, -53, -97, -52, -99, -51, -100, -49, -99, -45, -100, -43, -99, -41, -97, -38, -98, -35, -98, -33, -97, -33, -94, -33, -90, -32, -89, -32, -87, -30, -87, -28, -88, -27, -91, -27, -93, -25, -95, -26, -97, -25, -98, -22, -98, -20, -98, -19, -99, -16, -101, -14, -100, -13, -98, -11, -98, 2, -66, 0, -65, -12, -62, -14, -62, -14, -60, -16, -56, -18, -56, -20, -52, -23, -50, -24, -51, -27, -52, -32, -52, -35, -53, -36, -54, -39, -52, -41, -52, -43, -50, -44, -50, -46, -50, -48, -51, -48, -53, -51, -55, -51, -57, -54, -59, -54, -62, -56, -63, -54, -65, -54, -68, -52, -68, -51, -70, -49, -70, -48, -71, -49, -72, -50, -72, -50, -75, -51, -76, -51, -79, -54, -86, -54, -87, -55, -87, -56, -88, -55, -91, -55, -94)
 
-[node name="Lo Barnechea" type="Node2D" parent="Mapa"]
+[node name="Lo Barnechea" type="Node2D" parent="Mapa" unique_id=1537257707]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Lo Barnechea"]
+[node name="Area2D" type="Area2D" parent="Mapa/Lo Barnechea" unique_id=1905476231]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Lo Barnechea/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Lo Barnechea/Area2D" unique_id=504707967]
 color = Color(1, 1, 1, 0.188235)
 polygon = PackedVector2Array(71, -122, 75, -122, 77, -125, 82, -122, 83, -121, 86, -120, 88, -118, 89, -116, 93, -116, 93, -109, 95, -105, 97, -102, 98, -96, 100, -94, 100, -93, 102, -91, 101, -87, 104, -85, 104, -82, 106, -79, 109, -71, 110, -66, 111, -61, 111, -58, 108, -56, 107, -52, 103, -48, 102, -45, 99, -42, 98, -39, 91, -35, 86, -36, 85, -33, 77, -28, 72, -28, 67, -27, 61, -29, 60, -32, 61, -35, 60, -42, 56, -44, 56, -49, 51, -50, 50, -53, 51, -56, 48, -57, 42, -55, 37, -55, 35, -58, 31, -59, 29, -60, 27, -62, 27, -63, 26, -65, 25, -68, 25, -69, 27, -70, 27, -72, 31, -74, 31, -79, 32, -80, 34, -84, 35, -84, 38, -85, 41, -85, 42, -87, 43, -89, 51, -90, 52, -94, 51, -95, 53, -97, 53, -101, 54, -101, 55, -103, 56, -104, 56, -107, 58, -108, 58, -109, 63, -113, 65, -113, 67, -114, 68, -115, 68, -116, 70, -116, 71, -117, 71, -120)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Lo Barnechea/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Lo Barnechea/Area2D" unique_id=1549230519]
 polygon = PackedVector2Array(71, -122, 75, -122, 77, -125, 82, -122, 83, -121, 86, -120, 88, -118, 89, -116, 93, -116, 93, -109, 95, -105, 97, -102, 98, -96, 100, -94, 100, -93, 102, -91, 101, -87, 104, -85, 104, -82, 106, -79, 109, -71, 110, -66, 111, -61, 111, -58, 108, -56, 107, -52, 103, -48, 102, -45, 99, -42, 98, -39, 91, -35, 86, -36, 85, -33, 77, -28, 72, -28, 67, -27, 61, -29, 60, -32, 61, -35, 60, -42, 56, -44, 56, -49, 51, -50, 50, -53, 51, -56, 48, -57, 42, -55, 37, -55, 35, -58, 31, -59, 29, -60, 27, -62, 27, -63, 26, -65, 25, -68, 25, -69, 27, -70, 27, -72, 31, -74, 31, -79, 32, -80, 34, -84, 35, -84, 38, -85, 41, -85, 42, -87, 43, -89, 51, -90, 52, -94, 51, -95, 53, -97, 53, -101, 54, -101, 55, -103, 56, -104, 56, -107, 58, -108, 58, -109, 63, -113, 65, -113, 67, -114, 68, -115, 68, -116, 70, -116, 71, -117, 71, -120)
 
-[node name="San Ramon" type="Node2D" parent="Mapa"]
+[node name="San Ramon" type="Node2D" parent="Mapa" unique_id=275307197]
 
-[node name="Area2D" type="Area2D" parent="Mapa/San Ramon"]
+[node name="Area2D" type="Area2D" parent="Mapa/San Ramon" unique_id=137210441]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/San Ramon/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/San Ramon/Area2D" unique_id=967085089]
 color = Color(1, 1, 1, 0.152941)
 polygon = PackedVector2Array(18, -20, 16, -13, 16, -11, 21, -10, 20, -11, 20, -13, 19, -18, 19, -20)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/San Ramon/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/San Ramon/Area2D" unique_id=495209126]
 polygon = PackedVector2Array(18, -20, 16, -13, 16, -11, 21, -10, 20, -11, 20, -13, 19, -18, 19, -20)
 
-[node name="La Granja" type="Node2D" parent="Mapa"]
+[node name="La Granja" type="Node2D" parent="Mapa" unique_id=463570692]
 
-[node name="Area2D" type="Area2D" parent="Mapa/La Granja"]
+[node name="Area2D" type="Area2D" parent="Mapa/La Granja" unique_id=83658259]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/La Granja/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/La Granja/Area2D" unique_id=966035942]
 color = Color(1, 1, 1, 0.180392)
 polygon = PackedVector2Array(21, -10, 24, -11, 24, -12, 24, -13, 24, -21, 21, -20, 19, -20, 19, -18, 20, -13, 20, -11)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/La Granja/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/La Granja/Area2D" unique_id=1465663987]
 polygon = PackedVector2Array(21, -10, 24, -11, 24, -12, 24, -13, 24, -21, 21, -20, 19, -20, 19, -18, 20, -13, 20, -11)
 
-[node name="Cerrillos" type="Node2D" parent="Mapa"]
+[node name="Cerrillos" type="Node2D" parent="Mapa" unique_id=1868439919]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Cerrillos"]
+[node name="Area2D" type="Area2D" parent="Mapa/Cerrillos" unique_id=1904181562]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Cerrillos/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Cerrillos/Area2D" unique_id=1722260652]
 color = Color(1, 1, 1, 0.133333)
 polygon = PackedVector2Array(4, -17, 5, -18, 7, -24, 9, -29, 9, -30, 4, -28, 2, -30, 1, -28, 0, -28, 0, -25, -2, -21, 2, -22, 3, -20, 1, -18)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Cerrillos/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Cerrillos/Area2D" unique_id=2051422258]
 polygon = PackedVector2Array(4, -17, 5, -18, 7, -24, 9, -29, 9, -30, 4, -28, 2, -30, 1, -28, 0, -28, 0, -25, -2, -21, 2, -22, 3, -20, 1, -18)
 
-[node name="Padre Hurtado" type="Node2D" parent="Mapa"]
+[node name="Padre Hurtado" type="Node2D" parent="Mapa" unique_id=1195159259]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Padre Hurtado"]
+[node name="Area2D" type="Area2D" parent="Mapa/Padre Hurtado" unique_id=1532937184]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Padre Hurtado/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Padre Hurtado/Area2D" unique_id=2083283909]
 color = Color(1, 1, 1, 0.133333)
 polygon = PackedVector2Array(-17, 0, -16, -1, -15, -1, -13, -6, -11, -5, -10, -7, -16, -13, -16, -14, -15, -15, -14, -15, -14, -16, -15, -17, -16, -16, -17, -15, -18, -15, -22, -15, -23, -15, -26, -17, -27, -16, -28, -16, -29, -17, -30, -16, -31, -17, -32, -19, -33, -19, -34, -20, -35, -21, -38, -21, -38, -20, -38, -18, -39, -16, -39, -13, -40, -11, -42, -9, -43, -9, -43, -7, -42, -7, -42, -6, -41, -5, -41, -4, -40, -3, -39, -2, -38, -3, -32, -3, -32, -2, -31, -4, -30, -4, -29, -5, -28, -4, -27, -5, -23, -5, -23, -4, -20, -4, -20, -3)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Padre Hurtado/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Padre Hurtado/Area2D" unique_id=1983857641]
 polygon = PackedVector2Array(-17, 0, -16, -1, -15, -1, -13, -6, -11, -5, -10, -7, -16, -13, -16, -14, -15, -15, -14, -15, -14, -16, -15, -17, -16, -16, -17, -15, -18, -15, -22, -15, -23, -15, -26, -17, -27, -16, -28, -16, -29, -17, -30, -16, -31, -17, -32, -19, -33, -19, -34, -20, -35, -21, -38, -21, -38, -20, -38, -18, -39, -16, -39, -13, -40, -11, -42, -9, -43, -9, -43, -7, -42, -7, -42, -6, -41, -5, -41, -4, -40, -3, -39, -2, -38, -3, -32, -3, -32, -2, -31, -4, -30, -4, -29, -5, -28, -4, -27, -5, -23, -5, -23, -4, -20, -4, -20, -3)
 
-[node name="San Jose de Maipo" type="Node2D" parent="Mapa"]
+[node name="San Jose de Maipo" type="Node2D" parent="Mapa" unique_id=826487267]
 
-[node name="Area2D" type="Area2D" parent="Mapa/San Jose de Maipo"]
+[node name="Area2D" type="Area2D" parent="Mapa/San Jose de Maipo" unique_id=217603318]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/San Jose de Maipo/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/San Jose de Maipo/Area2D" unique_id=1927855321]
 color = Color(1, 1, 1, 0.101961)
 polygon = PackedVector2Array(95, -105, 99, -109, 98, -112, 104, -118, 109, -123, 112, -123, 116, -126, 116, -130, 125, -136, 129, -136, 129, -133, 128, -130, 132, -127, 134, -118, 132, -115, 136, -112, 136, -108, 134, -106, 135, -102, 135, -92, 142, -88, 141, -79, 146, -76, 146, -70, 152, -71, 155, -77, 161, -81, 163, -87, 167, -80, 175, -79, 179, -81, 183, -78, 188, -77, 190, -71, 194, -64, 194, -58, 193, -53, 188, -50, 189, -44, 186, -42, 186, -32, 184, -31, 183, -23, 180, -20, 177, -19, 176, -13, 177, -2, 175, 3, 176, 12, 174, 19, 177, 26, 177, 31, 174, 35, 174, 37, 171, 40, 171, 43, 173, 47, 172, 56, 171, 59, 176, 61, 177, 65, 180, 67, 179, 70, 174, 76, 173, 77, 173, 80, 171, 87, 176, 86, 179, 88, 183, 90, 184, 95, 186, 97, 186, 100, 183, 103, 181, 107, 180, 109, 183, 110, 185, 112, 184, 115, 183, 118, 179, 120, 177, 125, 177, 127, 188, 138, 189, 142, 189, 151, 186, 154, 183, 157, 175, 158, 169, 159, 168, 162, 165, 165, 161, 162, 153, 154, 148, 156, 143, 161, 143, 163, 141, 163, 137, 159, 135, 153, 135, 147, 131, 142, 124, 142, 123, 139, 120, 140, 116, 136, 116, 133, 112, 131, 112, 129, 114, 124, 117, 122, 113, 118, 113, 114, 111, 104, 100, 102, 99, 107, 97, 110, 94, 111, 89, 109, 86, 110, 81, 109, 78, 107, 77, 103, 78, 101, 82, 97, 80, 96, 81, 90, 78, 90, 75, 88, 76, 85, 73, 82, 71, 79, 70, 75, 71, 72, 71, 67, 69, 68, 66, 67, 60, 60, 60, 59, 63, 57, 64, 55, 66, 55, 67, 49, 66, 39, 68, 34, 66, 30, 67, 24, 59, 20, 60, 17, 61, 13, 63, 13, 65, 10, 64, 8, 62, 7, 61, 3, 59, 4, 58, -6, 56, -6, 54, -4, 52, -3, 47, -1, 48, -6, 47, -7, 48, -11, 49, -14, 51, -17, 53, -19, 55, -22, 60, -24, 60, -28, 60, -32, 61, -29, 67, -27, 72, -28, 77, -28, 85, -33, 86, -36, 91, -35, 98, -39, 99, -42, 102, -45, 103, -48, 107, -52, 108, -56, 111, -58, 111, -61, 110, -66, 109, -71, 106, -79, 104, -82, 104, -85, 101, -87, 102, -91, 100, -93, 100, -94, 98, -96, 97, -102)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/San Jose de Maipo/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/San Jose de Maipo/Area2D" unique_id=1169801509]
 polygon = PackedVector2Array(95, -105, 99, -109, 98, -112, 104, -118, 109, -123, 112, -123, 116, -126, 116, -130, 125, -136, 129, -136, 129, -133, 128, -130, 132, -127, 134, -118, 132, -115, 136, -112, 136, -108, 134, -106, 135, -102, 135, -92, 142, -88, 141, -79, 146, -76, 146, -70, 152, -71, 155, -77, 161, -81, 163, -87, 167, -80, 175, -79, 179, -81, 183, -78, 188, -77, 190, -71, 194, -64, 194, -58, 193, -53, 188, -50, 189, -44, 186, -42, 186, -32, 184, -31, 183, -23, 180, -20, 177, -19, 176, -13, 177, -2, 175, 3, 176, 12, 174, 19, 177, 26, 177, 31, 174, 35, 174, 37, 171, 40, 171, 43, 173, 47, 172, 56, 171, 59, 176, 61, 177, 65, 180, 67, 179, 70, 174, 76, 173, 77, 173, 80, 171, 87, 176, 86, 179, 88, 183, 90, 184, 95, 186, 97, 186, 100, 183, 103, 181, 107, 180, 109, 183, 110, 185, 112, 184, 115, 183, 118, 179, 120, 177, 125, 177, 127, 188, 138, 189, 142, 189, 151, 186, 154, 183, 157, 175, 158, 169, 159, 168, 162, 165, 165, 161, 162, 153, 154, 148, 156, 143, 161, 143, 163, 141, 163, 137, 159, 135, 153, 135, 147, 131, 142, 124, 142, 123, 139, 120, 140, 116, 136, 116, 133, 112, 131, 112, 129, 114, 124, 117, 122, 113, 118, 113, 114, 111, 104, 100, 102, 99, 107, 97, 110, 94, 111, 89, 109, 86, 110, 81, 109, 78, 107, 77, 103, 78, 101, 82, 97, 80, 96, 81, 90, 78, 90, 75, 88, 76, 85, 73, 82, 71, 79, 70, 75, 71, 72, 71, 67, 69, 68, 66, 67, 60, 60, 60, 59, 63, 57, 64, 55, 66, 55, 67, 49, 66, 39, 68, 34, 66, 30, 67, 24, 59, 20, 60, 17, 61, 13, 63, 13, 65, 10, 64, 8, 62, 7, 61, 3, 59, 4, 58, -6, 56, -6, 54, -4, 52, -3, 47, -1, 48, -6, 47, -7, 48, -11, 49, -14, 51, -17, 53, -19, 55, -22, 60, -24, 60, -28, 60, -32, 61, -29, 67, -27, 72, -28, 77, -28, 85, -33, 86, -36, 91, -35, 98, -39, 99, -42, 102, -45, 103, -48, 107, -52, 108, -56, 111, -58, 111, -61, 110, -66, 109, -71, 106, -79, 104, -82, 104, -85, 101, -87, 102, -91, 100, -93, 100, -94, 98, -96, 97, -102)
 
-[node name="Santiago" type="Node2D" parent="Mapa"]
+[node name="Santiago" type="Node2D" parent="Mapa" unique_id=1315437884]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Santiago"]
+[node name="Area2D" type="Area2D" parent="Mapa/Santiago" unique_id=123470129]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Santiago/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Santiago/Area2D" unique_id=281686684]
 color = Color(1, 1, 1, 0.14902)
 polygon = PackedVector2Array(22, -30, 19, -39, 12, -42, 10, -41, 10, -39, 8, -39, 8, -37, 10, -37, 10, -36, 10, -31, 12, -30, 16, -30, 18, -30, 21, -31)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Santiago/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Santiago/Area2D" unique_id=1386571582]
 polygon = PackedVector2Array(22, -30, 19, -39, 12, -42, 10, -41, 10, -39, 8, -39, 8, -37, 10, -37, 10, -36, 10, -31, 12, -30, 16, -30, 18, -30, 21, -31)
 
-[node name="Buin" type="Node2D" parent="Mapa"]
+[node name="Buin" type="Node2D" parent="Mapa" unique_id=1968080748]
 
-[node name="Area2D" type="Area2D" parent="Mapa/Buin"]
+[node name="Area2D" type="Area2D" parent="Mapa/Buin" unique_id=1451924500]
 script = ExtResource("2_4nsmc")
 
-[node name="Polygon2D" type="Polygon2D" parent="Mapa/Buin/Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Mapa/Buin/Area2D" unique_id=795739588]
 color = Color(1, 1, 1, 0.133333)
 polygon = PackedVector2Array(-32, 49, -29, 51, -27, 49, -24, 51, -22, 52, -21, 53, -19, 55, -16, 54, -11, 54, -9, 55, -5, 50, -4, 51, -2, 41, 0, 41, 0, 44, 7, 44, 8, 45, 10, 44, 10, 37, 15, 36, 17, 33, 19, 34, 20, 35, 23, 32, 25, 32, 25, 30, 24, 28, 23, 26, 19, 22, 17, 18, 16, 15, 19, 13, 20, 12, 20, 10, 19, 11, 17, 11, 15, 12, 14, 14, 12, 14, 12, 15, 11, 14, 11, 15, 8, 15, 5, 16, 4, 17, 4, 20, 2, 22, 0, 22, -7, 27, -8, 27, -9, 29, -11, 31, -12, 31, -12, 32, -14, 34, -15, 36, -16, 37, -21, 42, -22, 45, -24, 46, -25, 48, -31, 48)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Buin/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mapa/Buin/Area2D" unique_id=225127841]
 polygon = PackedVector2Array(-32, 49, -29, 51, -27, 49, -24, 51, -22, 52, -21, 53, -19, 55, -16, 54, -11, 54, -9, 55, -5, 50, -4, 51, -2, 41, 0, 41, 0, 44, 7, 44, 8, 45, 10, 44, 10, 37, 15, 36, 17, 33, 19, 34, 20, 35, 23, 32, 25, 32, 25, 30, 24, 28, 23, 26, 19, 22, 17, 18, 16, 15, 19, 13, 20, 12, 20, 10, 19, 11, 17, 11, 15, 12, 14, 14, 12, 14, 12, 15, 11, 14, 11, 15, 8, 15, 5, 16, 4, 17, 4, 20, 2, 22, 0, 22, -7, 27, -8, 27, -9, 29, -11, 31, -12, 31, -12, 32, -14, 34, -15, 36, -16, 37, -21, 42, -22, 45, -24, 46, -25, 48, -31, 48)
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1465768102 node_paths=PackedStringArray("camara")]
+script = ExtResource("4_isnjj")
+camara = NodePath("../Camera2D")
+
+[node name="Panel" type="PanelContainer" parent="UI" unique_id=1848055644]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Panel" unique_id=119642590]
+layout_mode = 2
+
+[node name="Contenido" type="RichTextLabel" parent="UI/Panel/MarginContainer" unique_id=1022576775]
+layout_mode = 2
