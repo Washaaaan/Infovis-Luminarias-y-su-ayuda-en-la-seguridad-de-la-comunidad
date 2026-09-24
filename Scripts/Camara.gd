@@ -45,9 +45,9 @@ signal comuna_deseleccionada
 # CONFIGURACIÓN DEL BORDE
 # ============================================================
 
-@export var grosor_borde_normal: float = 1.0
+@export var grosor_borde_normal: float = 0.8
 
-@export var grosor_borde_minimo: float = 0.32962
+@export var grosor_borde_minimo: float = 0.2
 
 
 # ============================================================
