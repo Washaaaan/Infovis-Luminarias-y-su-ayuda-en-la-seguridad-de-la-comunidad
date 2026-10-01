@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://clqki40l54402" path="res://Scripts/Camara.gd" id="1_l4m3v"]
 [ext_resource type="Script" uid="uid://bbs613pktiavg" path="res://Scripts/ClickearComuna.gd" id="2_4nsmc"]
 [ext_resource type="Script" uid="uid://cpv27kkygp7cp" path="res://Scripts/panel_comuna.gd" id="4_isnjj"]
+[ext_resource type="Script" uid="uid://cqskcge7glm54" path="res://Scripts/control_anio.gd" id="5_ctrlanio"]
+[ext_resource type="Script" uid="uid://4jsvssx3wc6d" path="res://Scripts/grafico_comuna.gd" id="6_grafico"]
+[ext_resource type="AudioStream" uid="uid://c6tqtqni68uao" path="res://sonidos/peligro.mp3" id="7_peligro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4nsmc"]
 size = Vector2(404.5, 337)
@@ -681,3 +684,28 @@ layout_mode = 2
 
 [node name="Contenido" type="RichTextLabel" parent="UI/Panel/MarginContainer" unique_id=1022576775]
 layout_mode = 2
+
+[node name="AlertaPeligro" type="AudioStreamPlayer" parent="UI" unique_id=1465768105]
+stream = ExtResource("7_peligro")
+volume_db = -18.0
+
+[node name="GraficoComuna" type="Control" parent="UI" unique_id=1465768104]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_grafico")
+
+[node name="ControlAnio" type="Control" parent="UI" unique_id=1465768103]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_ctrlanio")

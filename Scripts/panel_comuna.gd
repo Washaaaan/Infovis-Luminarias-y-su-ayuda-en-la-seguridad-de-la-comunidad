@@ -1,58 +1,309 @@
 extends CanvasLayer
 
+# ============================================================
+# DETALLE DE COMUNA
+#
+# Al entrar en SOLO_COMUNA se muestran los gráficos
+# (radar + dispersión conectada) en lugar del mapa ampliado.
+# Los botones ◀ / ▶ permiten recorrer las comunas.
+# ============================================================
+
 @export var camara: Camera2D
 
-@onready var panel: Control = $Panel
-@onready var contenido: RichTextLabel = $Panel/MarginContainer/Contenido
+# Nivel de color (0-1) desde el cual una comuna se considera "peligrosa".
+@export var umbral_peligro: float = 0.3
 
-# Sangría de cada fila del CSV (0 = categoría, 1 = subtipo, 2 = sub-subtipo)
-const SANGRIA: Array[int] = [0, 1, 0, 1, 2, 2, 1, 0, 1, 1, 0, 0, 0, 0]
-const FILA_TERRITORIO := 10
+# Intervalo máximo entre sonidos (segundos), en el umbral de peligro.
+@export var intervalo_max: float = 6.0
+
+@onready var panel: Control = $Panel
+@onready var grafico: Control = $GraficoComuna
+@onready var alerta: AudioStreamPlayer = $AlertaPeligro
+
+var comuna_actual: String = ""
+
+var _comunas: Array = []
+var _indice_actual: int = 0
+
+var _comuna_nodo: Node = null
+var _acumulado: float = 0.0
+var _intervalo: float = 1.0
+
+var _boton_izq: Button
+var _boton_der: Button
 
 
 func _ready() -> void:
-	# Activar BBCode para que [b] y [font_size] se interpreten
-	contenido.bbcode_enabled = true
-
-	# Ocupar la tercera columna: del 66,67% al 100% del ancho, alto completo
-	panel.anchor_left = 2.0 / 3.0
-	panel.anchor_top = 0.0
-	panel.anchor_right = 1.0
-	panel.anchor_bottom = 1.0
-	panel.offset_left = 0.0
-	panel.offset_top = 0.0
-	panel.offset_right = 0.0
-	panel.offset_bottom = 0.0
-
+	# Ocultar el panel de texto; su lugar lo ocupa el gráfico.
 	panel.visible = false
+	grafico.visible = false
+	grafico.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	_construir_lista_comunas()
+	_crear_botones()
+	_configurar_alerta()
+	_crear_leyenda()
+
 	camara.comuna_seleccionada.connect(_on_comuna_seleccionada)
 	camara.comuna_deseleccionada.connect(ocultar)
 
 
+# ============================================================
+# LEYENDA DEL MAPA
+# ============================================================
+
+func _crear_leyenda() -> void:
+	var leyenda: Node = load(
+		"res://Scripts/leyenda_mapa.gd"
+	).new()
+
+	leyenda.name = "LeyendaMapa"
+
+	add_child(leyenda)
+
+
+# ============================================================
+# SONIDO DE PELIGRO
+# ============================================================
+
+func _configurar_alerta() -> void:
+	if alerta == null:
+		return
+	var s := alerta.stream
+	if s is AudioStreamWAV:
+		s.loop_mode = AudioStreamWAV.LOOP_FORWARD
+		s.loop_begin = 0
+		s.loop_end = s.data.size() / 2
+
+
+func _actualizar_alerta() -> void:
+	if alerta == null:
+		return
+
+	_acumulado = 0.0
+
+	if comuna_actual == "":
+		alerta.stop()
+		return
+
+	if _tasa_peligro() >= umbral_peligro:
+		alerta.play()
+	else:
+		alerta.stop()
+
+
+# ============================================================
+# BUCLE DEL SONIDO DE PELIGRO
+#
+# A mayor tasa (modo activo), intervalos más cortos.
+# En el máximo: una vez por segundo.
+# ============================================================
+
+func _process(delta: float) -> void:
+	if alerta == null:
+		return
+
+	if comuna_actual == "" or _comuna_nodo == null:
+		return
+
+	var tasa := _tasa_peligro()
+
+	if tasa < umbral_peligro:
+		if alerta.playing:
+			alerta.stop()
+		_acumulado = 0.0
+		return
+
+	_intervalo = lerpf(
+		intervalo_max,
+		1.0,
+		_factor_peligro(
+			tasa,
+			_tasa_maxima()
+		)
+	)
+
+	_acumulado += delta
+
+	if _acumulado >= _intervalo:
+		_acumulado = 0.0
+		alerta.play()
+
+
+# Tasa de peligro de la comuna según el modo activo.
+
+func _tasa_peligro() -> float:
+	if _comuna_nodo == null:
+		return 0.0
+
+	var area: Variant = _comuna_nodo.get_node_or_null("Area2D")
+
+	if area == null:
+		return 0.0
+
+	var modo_area: int = area.modo
+
+	if modo_area == 2:
+		return area.nivel_delitos_persona
+
+	return area.nivel_delitos_zona
+
+
+# Máxima tasa entre todas las comunas (modo activo, año actual).
+
+func _tasa_maxima() -> float:
+	var modo_area := 0
+
+	if _comuna_nodo != null:
+		var area_sel: Variant = _comuna_nodo.get_node_or_null("Area2D")
+		if area_sel != null:
+			modo_area = area_sel.modo
+
+	var maximo := 0.0
+
+	for comuna in _comunas:
+		var area: Variant = comuna.get_node_or_null("Area2D")
+		if area == null:
+			continue
+		var valor: float = (
+			area.nivel_delitos_zona
+			if modo_area == 1
+			else area.nivel_relacion
+		)
+		maximo = maxf(maximo, valor)
+
+	return maximo
+
+
+# 0.0 en el umbral, 1.0 en el máximo real (tasa_max).
+
+func _factor_peligro(
+	tasa: float,
+	tasa_max: float
+) -> float:
+	if tasa_max <= umbral_peligro:
+		return 1.0
+
+	return clampf(
+		(tasa - umbral_peligro) /
+		(tasa_max - umbral_peligro),
+		0.0,
+		1.0
+	)
+
+
+# ============================================================
+# LISTA DE COMUNAS (orden del mapa)
+# ============================================================
+
+func _construir_lista_comunas() -> void:
+	var mapa := get_node_or_null("../Mapa")
+	if mapa == null:
+		return
+	for hijo in mapa.get_children():
+		if hijo.get_node_or_null("Area2D") != null:
+			_comunas.append(hijo)
+
+
+# ============================================================
+# BOTONES
+# ============================================================
+
+func _crear_botones() -> void:
+	_boton_izq = _crear_boton("◀")
+	_boton_izq.anchor_left = 0.0
+	_boton_izq.anchor_right = 0.0
+	_boton_izq.anchor_top = 0.5
+	_boton_izq.anchor_bottom = 0.5
+	_boton_izq.offset_left = 20.0
+	_boton_izq.offset_right = 84.0
+	_boton_izq.offset_top = -36.0
+	_boton_izq.offset_bottom = 36.0
+	_boton_izq.pressed.connect(_ir_anterior)
+
+	_boton_der = _crear_boton("▶")
+	_boton_der.anchor_left = 1.0
+	_boton_der.anchor_right = 1.0
+	_boton_der.anchor_top = 0.5
+	_boton_der.anchor_bottom = 0.5
+	_boton_der.offset_left = -84.0
+	_boton_der.offset_right = -20.0
+	_boton_der.offset_top = -36.0
+	_boton_der.offset_bottom = 36.0
+	_boton_der.pressed.connect(_ir_siguiente)
+
+
+func _crear_boton(texto: String) -> Button:
+	var b := Button.new()
+	b.text = texto
+	b.visible = false
+	b.add_theme_font_size_override("font_size", 28)
+	add_child(b)
+	return b
+
+
+func _ir_anterior() -> void:
+	_navegar(-1)
+
+
+func _ir_siguiente() -> void:
+	_navegar(1)
+
+
+func _navegar(delta: int) -> void:
+	if _comunas.is_empty():
+		return
+	_indice_actual = wrapi(_indice_actual + delta, 0, _comunas.size())
+	camara.seleccionar_comuna_grafico(_comunas[_indice_actual])
+
+
+func _actualizar_botones(mostrar_botones: bool) -> void:
+	if _boton_izq != null:
+		_boton_izq.visible = mostrar_botones
+	if _boton_der != null:
+		_boton_der.visible = mostrar_botones
+
+
+# ============================================================
+# SELECCIÓN
+# ============================================================
+
 func _on_comuna_seleccionada(comuna: Node) -> void:
-	mostrar(comuna.name)
+	comuna_actual = comuna.name
+	_comuna_nodo = comuna
+	var idx := _comunas.find(comuna)
+	if idx >= 0:
+		_indice_actual = idx
+	mostrar(comuna_actual)
+	_actualizar_alerta()
 
 
 func mostrar(nombre: String) -> void:
-	var valores := DatosComunas.obtener(nombre)
+	if grafico.has_method("mostrar"):
+		grafico.mostrar(nombre, DatosComunas.anio_actual)
+	panel.visible = false
+	_actualizar_botones(true)
 
-	if valores.is_empty():
-		contenido.text = "[b]%s[/b]\n\nSin datos en el CSV." % nombre
-	else:
-		var texto := "[font_size=28][b]%s[/b][/font_size]\n\n" % nombre
-		for i in valores.size():
-			if i == FILA_TERRITORIO:
-				texto += "\n"
-			var nivel: int = SANGRIA[i] if i < SANGRIA.size() else 0
-			texto += "%s%s: [b]%s[/b]\n" % [
-				"    ".repeat(nivel),
-				DatosComunas.etiquetas[i],
-				DatosComunas.formatear(valores[i]),
-			]
-		contenido.text = texto
 
-	panel.visible = true
+func actualizar_anio_panel() -> void:
+	if grafico == null:
+		return
+	if not grafico.visible:
+		return
+	if comuna_actual == "":
+		return
+	if grafico.has_method("mostrar"):
+		grafico.mostrar(comuna_actual, DatosComunas.anio_actual)
+
+	_actualizar_alerta()
 
 
 func ocultar() -> void:
+	grafico.ocultar()
 	panel.visible = false
+	_actualizar_botones(false)
+	comuna_actual = ""
+	_comuna_nodo = null
+	_acumulado = 0.0
+	if alerta != null:
+		alerta.stop()
