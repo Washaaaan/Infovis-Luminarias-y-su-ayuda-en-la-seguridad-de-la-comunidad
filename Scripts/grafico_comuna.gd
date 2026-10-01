@@ -202,7 +202,7 @@ func _draw() -> void:
 	# --------------------------------------------------------
 
 	_texto(
-		"%s — Año %d" % [_nombre, _anio],
+		"%s - Año %d" % [_nombre, _anio],
 		Vector2(size.x * 0.5, size.y * 0.075),
 		26,
 		TEXTO,
@@ -243,20 +243,20 @@ func _dibujar_relacion(rect: Rect2) -> void:
 
 	if modo == 2:
 
-		titulo = "Ingreso vs delitos por persona · %d" % _anio
+		titulo = "Ingreso vs delitos por persona - %d" % _anio
 		titulo_x = "Ingreso promedio del hogar"
 		titulo_y = "Delitos por persona"
 
 	elif modo == 1:
 
-		titulo = "Luminarias vs delitos · %d" % _anio
+		titulo = "Luminarias vs delitos - %d" % _anio
 		titulo_x = "Luminarias por zona habitada"
 		titulo_y = "Delitos por zona habitada"
 
 	else:
 
-		titulo = "Densidad vs delitos por zona · %d" % _anio
-		titulo_x = "Densidad de personas (hab/km²)"
+		titulo = "Densidad vs delitos por zona - %d" % _anio
+		titulo_x = "Densidad de personas (hab/km2)"
 		titulo_y = "Delitos por zona habitada"
 
 
@@ -476,12 +476,14 @@ func _dibujar_relacion(rect: Rect2) -> void:
 		true
 	)
 
-	_texto(
+	# La etiqueta del eje Y se dibuja rotada 90° a la izquierda
+	# del eje para no solaparse con el título del gráfico.
+	_texto_vertical(
 		titulo_y,
-		Vector2(x0, y0 - 24),
+		x0 - 66,
+		(y0 + y1) * 0.5,
 		14,
-		TEXTO,
-		false
+		TEXTO
 	)
 
 
@@ -542,7 +544,7 @@ func _dibujar_relacion(rect: Rect2) -> void:
 		)
 
 		_texto(
-			"%.1f · %.1f" % [
+			"%.1f - %.1f" % [
 				valores_x[idx_sel],
 				valores_y[idx_sel]
 			],
@@ -566,7 +568,7 @@ func _dibujar_relacion(rect: Rect2) -> void:
 	)
 
 	_texto(
-		"R² = %.3f" % (r * r),
+		"R2 = %.3f" % (r * r),
 		Vector2(x0 + 8, y0 + 38),
 		14,
 		TEXTO,
@@ -667,6 +669,47 @@ func _texto(
 		fs,
 		color
 	)
+
+
+# Dibuja texto rotado 90° (de abajo hacia arriba), centrado
+# verticalmente en y_centro sobre una línea vertical en x.
+func _texto_vertical(
+	texto: String,
+	x: float,
+	y_centro: float,
+	fs: int,
+	color: Color
+) -> void:
+
+	var fuente := get_theme_default_font()
+
+	if fuente == null:
+		return
+
+	var tam := fuente.get_string_size(
+		texto,
+		HORIZONTAL_ALIGNMENT_LEFT,
+		-1,
+		fs
+	)
+
+	draw_set_transform(
+		Vector2(x, y_centro + tam.x * 0.5),
+		-PI * 0.5,
+		Vector2.ONE
+	)
+
+	draw_string(
+		fuente,
+		Vector2.ZERO,
+		texto,
+		HORIZONTAL_ALIGNMENT_LEFT,
+		-1,
+		fs,
+		color
+	)
+
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
 func _miles(valor: int) -> String:

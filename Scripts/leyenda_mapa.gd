@@ -95,10 +95,10 @@ func _dibujar_gradiente(origen: Vector2) -> void:
 	_texto("bajo", bx + Vector2(0, bh + 18), 11, TEXTO_TENUE)
 	_texto("alto", bx + Vector2(bw, bh + 18), 11, TEXTO_TENUE, false, true)
 
-	var nota := "Más rojo = más delitos por km² habitado."
+	var nota := "Más rojo = más delitos por km2 habitado."
 
 	if DatosComunas.modo_visual == 1:
-		nota = "Anillos = luminarias (velocidad/intensidad ∝ densidad)."
+		nota = "Anillos = luminarias (velocidad/intensidad proporcional a densidad)."
 
 	_texto(nota, origen + Vector2(14, h - 16), 10, TEXTO_TENUE)
 
@@ -114,7 +114,7 @@ func _dibujar_bivariado(origen: Vector2) -> void:
 	draw_rect(Rect2(origen, Vector2(w, h)), FONDO, true)
 	draw_rect(Rect2(origen, Vector2(w, h)), BORDE, false, 1.0)
 
-	_texto("Delitos por persona × Ingreso", origen + Vector2(14, 26), 14, TEXTO)
+	_texto("Delitos por persona x Ingreso", origen + Vector2(14, 26), 14, TEXTO)
 
 	# Cuadrícula 3x3. filas = ingreso (arriba = alto).
 	var cuadro := 34.0

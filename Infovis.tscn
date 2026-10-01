@@ -7,11 +7,32 @@
 [ext_resource type="Script" uid="uid://cqskcge7glm54" path="res://Scripts/control_anio.gd" id="5_ctrlanio"]
 [ext_resource type="Script" uid="uid://4jsvssx3wc6d" path="res://Scripts/grafico_comuna.gd" id="6_grafico"]
 [ext_resource type="AudioStream" uid="uid://c6tqtqni68uao" path="res://sonidos/peligro.mp3" id="7_peligro"]
+[ext_resource type="Shader" uid="uid://da3cgqsrqv2uu" path="res://Shaders/fondo.gdshader" id="8_fondo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fondo"]
+shader = ExtResource("8_fondo")
+shader_parameter/color_centro = Color(0.075, 0.094, 0.157, 1)
+shader_parameter/color_borde = Color(0.016, 0.02, 0.035, 1)
+shader_parameter/radio = 0.65
+shader_parameter/suavidad = 0.45
+shader_parameter/centro_offset = Vector2(0, -0.04)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4nsmc"]
 size = Vector2(404.5, 337)
 
 [node name="Bg" type="Node2D" unique_id=438070891]
+
+[node name="Fondo" type="CanvasLayer" parent="." unique_id=1045663891]
+layer = -10
+
+[node name="Vignette" type="ColorRect" parent="Fondo" unique_id=1277771649]
+material = SubResource("ShaderMaterial_fondo")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1862409755]
 position = Vector2(583, 323)

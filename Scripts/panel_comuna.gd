@@ -210,7 +210,7 @@ func _construir_lista_comunas() -> void:
 # ============================================================
 
 func _crear_botones() -> void:
-	_boton_izq = _crear_boton("◀")
+	_boton_izq = _crear_boton("<")
 	_boton_izq.anchor_left = 0.0
 	_boton_izq.anchor_right = 0.0
 	_boton_izq.anchor_top = 0.5
@@ -221,7 +221,7 @@ func _crear_botones() -> void:
 	_boton_izq.offset_bottom = 36.0
 	_boton_izq.pressed.connect(_ir_anterior)
 
-	_boton_der = _crear_boton("▶")
+	_boton_der = _crear_boton(">")
 	_boton_der.anchor_left = 1.0
 	_boton_der.anchor_right = 1.0
 	_boton_der.anchor_top = 0.5
