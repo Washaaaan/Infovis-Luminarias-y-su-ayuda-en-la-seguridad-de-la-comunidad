@@ -53,6 +53,24 @@ var nivel_iluminacion: float = 0.0
 
 
 # ============================================================
+# MODO Y VALORES DE COLOR
+#
+# modo 0: relación delitos / densidad de personas.
+# modo 1: delitos por zona habitada (+ ondas por luminarias).
+# ============================================================
+
+var modo: int = 0
+
+var nivel_relacion: float = 0.0
+
+var nivel_delitos_zona: float = 0.0
+
+var nivel_delitos_persona: float = 0.0
+
+var nivel_ingreso: float = 0.0
+
+
+# ============================================================
 # READY
 # ============================================================
 
@@ -116,6 +134,31 @@ func configurar_iluminacion() -> void:
 	)
 
 
+	# --------------------------------------------------------
+	# VALORES DE COLOR SEGÚN EL MODO
+	# --------------------------------------------------------
+
+	nivel_relacion = DatosComunas.nivel_anio(
+		nombre_comuna,
+		DatosComunas.anio_actual
+	)
+
+	nivel_delitos_zona = _normalizar_delitos_zona(
+		nombre_comuna,
+		DatosComunas.anio_actual
+	)
+
+	nivel_delitos_persona = _normalizar_delitos_persona(
+		nombre_comuna,
+		DatosComunas.anio_actual
+	)
+
+	nivel_ingreso = _normalizar_ingreso(
+		nombre_comuna,
+		DatosComunas.anio_actual
+	)
+
+
 	var shader: Shader = preload(
 		"res://Shaders/iluminacion_comuna.gdshader"
 	)
@@ -127,12 +170,58 @@ func configurar_iluminacion() -> void:
 
 
 	# --------------------------------------------------------
-	# NIVEL DE ESTA COMUNA
+	# MODO
+	# --------------------------------------------------------
+
+	shader_material.set_shader_parameter(
+		"modo",
+		modo
+	)
+
+
+	# --------------------------------------------------------
+	# COLOR
 	# --------------------------------------------------------
 
 	shader_material.set_shader_parameter(
 		"nivel",
+		_nivel_color()
+	)
+
+
+	# --------------------------------------------------------
+	# INGRESO (MODO 2)
+	# --------------------------------------------------------
+
+	shader_material.set_shader_parameter(
+		"ingreso",
+		nivel_ingreso
+	)
+
+
+	# --------------------------------------------------------
+	# LUMINARIAS (ONDAS)
+	# --------------------------------------------------------
+
+	shader_material.set_shader_parameter(
+		"luminarias",
 		nivel_iluminacion
+	)
+
+
+	# --------------------------------------------------------
+	# CORTES DEL EFECTO (PROMEDIO Y TOPE)
+	# --------------------------------------------------------
+
+	shader_material.set_shader_parameter(
+		"luminarias_promedio",
+		DatosComunas.luminarias_promedio
+	)
+
+
+	shader_material.set_shader_parameter(
+		"luminarias_ref",
+		DatosComunas.luminarias_ref
 	)
 
 
@@ -147,7 +236,7 @@ func configurar_iluminacion() -> void:
 
 
 	# --------------------------------------------------------
-	# LÍMITES
+	# CENTRO / RADIO / LÍMITES
 	# --------------------------------------------------------
 
 	configurar_limites_shader()
@@ -158,6 +247,137 @@ func configurar_iluminacion() -> void:
 	# --------------------------------------------------------
 
 	polygon.material = shader_material
+
+
+# ============================================================
+# NIVEL DE COLOR SEGÚN EL MODO
+# ============================================================
+
+func _nivel_color() -> float:
+
+	if modo == 2:
+
+		return nivel_delitos_persona
+
+
+	return nivel_delitos_zona
+
+
+# ============================================================
+# NORMALIZAR DELITOS POR ZONA HABITADA
+# ============================================================
+
+func _normalizar_delitos_zona(
+	nombre: String,
+	anio: int
+) -> float:
+
+	var valor := DatosComunas.delitos_zona_anio(
+		nombre,
+		anio
+	)
+
+
+	if valor <= 0.0:
+		return 0.0
+
+
+	var mm := DatosComunas.minmax_delitos_zona(
+		anio
+	)
+
+
+	if mm.y <= mm.x:
+		return 0.5
+
+
+	return clamp(
+		inverse_lerp(
+			mm.x,
+			mm.y,
+			valor
+		),
+		0.0,
+		1.0
+	)
+
+
+# ============================================================
+# NORMALIZAR DELITOS POR PERSONA (LOG)
+# ============================================================
+
+func _normalizar_delitos_persona(
+	nombre: String,
+	anio: int
+) -> float:
+
+	var valor := DatosComunas.delitos_persona_anio(
+		nombre,
+		anio
+	)
+
+
+	if valor <= 0.0:
+		return 0.0
+
+
+	var mm := DatosComunas.minmax_delitos_persona(
+		anio
+	)
+
+
+	if mm.y <= mm.x:
+		return 0.5
+
+
+	return clamp(
+		inverse_lerp(
+			log(mm.x),
+			log(mm.y),
+			log(valor)
+		),
+		0.0,
+		1.0
+	)
+
+
+# ============================================================
+# NORMALIZAR INGRESO (LOG)
+# ============================================================
+
+func _normalizar_ingreso(
+	nombre: String,
+	anio: int
+) -> float:
+
+	var valor := DatosComunas.ingreso_anio(
+		nombre,
+		anio
+	)
+
+
+	if valor <= 0.0:
+		return 0.0
+
+
+	var mm := DatosComunas.minmax_ingreso_anual(
+		anio
+	)
+
+
+	if mm.y <= mm.x:
+		return 0.5
+
+
+	return clamp(
+		inverse_lerp(
+			log(mm.x),
+			log(mm.y),
+			log(valor)
+		),
+		0.0,
+		1.0
+	)
 
 
 # ============================================================
@@ -192,6 +412,165 @@ func configurar_limites_shader() -> void:
 	shader_material.set_shader_parameter(
 		"limite_max",
 		rect.end
+	)
+
+
+	# --------------------------------------------------------
+	# CENTRO Y RADIO (PARA LAS ONDAS)
+	# --------------------------------------------------------
+
+	var centro := centroide_poligono(
+		puntos
+	)
+
+
+	var radio := 0.0
+
+
+	for punto in puntos:
+
+		radio = max(
+			radio,
+			punto.distance_to(centro)
+		)
+
+
+	shader_material.set_shader_parameter(
+		"centro",
+		centro
+	)
+
+
+	shader_material.set_shader_parameter(
+		"radio",
+		max(
+			radio,
+			0.0001
+		)
+	)
+
+
+# ============================================================
+# CENTROIDE DE UN POLÍGONO
+# ============================================================
+
+func centroide_poligono(
+	puntos: PackedVector2Array
+) -> Vector2:
+
+	var n := puntos.size()
+
+
+	if n == 0:
+
+		return Vector2.ZERO
+
+
+	var doble_area := 0.0
+
+	var cx := 0.0
+
+	var cy := 0.0
+
+
+	for i in range(n):
+
+		var a := puntos[i]
+
+		var b := puntos[(i + 1) % n]
+
+		var cruz := a.x * b.y - b.x * a.y
+
+		doble_area += cruz
+
+		cx += (a.x + b.x) * cruz
+
+		cy += (a.y + b.y) * cruz
+
+
+	if abs(doble_area) <= 0.000001:
+
+		var suma := Vector2.ZERO
+
+		for p in puntos:
+
+			suma += p
+
+		return suma / float(n)
+
+
+	return Vector2(
+		cx / (3.0 * doble_area),
+		cy / (3.0 * doble_area)
+	)
+
+
+# ============================================================
+# ESTABLECER AÑO (RECOLOREO)
+# ============================================================
+
+func establecer_anio(anio: int) -> void:
+
+	if shader_material == null:
+		return
+
+
+	var nombre_comuna := get_parent().name
+
+
+	nivel_relacion = DatosComunas.nivel_anio(
+		nombre_comuna,
+		anio
+	)
+
+	nivel_delitos_zona = _normalizar_delitos_zona(
+		nombre_comuna,
+		anio
+	)
+
+	nivel_delitos_persona = _normalizar_delitos_persona(
+		nombre_comuna,
+		anio
+	)
+
+	nivel_ingreso = _normalizar_ingreso(
+		nombre_comuna,
+		anio
+	)
+
+
+	shader_material.set_shader_parameter(
+		"nivel",
+		_nivel_color()
+	)
+
+	shader_material.set_shader_parameter(
+		"ingreso",
+		nivel_ingreso
+	)
+
+
+# ============================================================
+# ESTABLECER MODO
+# ============================================================
+
+func establecer_modo(nuevo_modo: int) -> void:
+
+	modo = nuevo_modo
+
+
+	if shader_material == null:
+		return
+
+
+	shader_material.set_shader_parameter(
+		"modo",
+		modo
+	)
+
+	shader_material.set_shader_parameter(
+		"nivel",
+		_nivel_color()
 	)
 
 

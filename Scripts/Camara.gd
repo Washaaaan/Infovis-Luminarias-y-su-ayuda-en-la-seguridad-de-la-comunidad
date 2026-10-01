@@ -712,6 +712,47 @@ func hacer_segundo_zoom(comuna: Node) -> void:
 
 
 # ============================================================
+# SELECCIONAR COMUNA PARA GRÁFICOS (navegación)
+#
+# Centra la cámara en la comuna, oculta las demás y mantiene
+# el estado SOLO_COMUNA. No altera las posiciones de retorno.
+# ============================================================
+
+func seleccionar_comuna_grafico(
+	comuna: Node
+) -> void:
+
+	if comuna == null:
+		return
+
+
+	var polygon: Polygon2D = obtener_polygon(comuna)
+
+	if polygon == null:
+		return
+
+
+	var rect_global: Rect2 = (
+		obtener_rect_global_polygon(polygon)
+	)
+
+
+	comuna_actual = comuna
+
+
+	global_position = rect_global.get_center()
+
+
+	ocultar_otras_comunas(comuna)
+
+
+	estado_actual = EstadoCamara.SOLO_COMUNA
+
+
+	comuna_seleccionada.emit(comuna)
+
+
+# ============================================================
 # CALCULAR ZOOM DEL PRIMER NIVEL
 # ============================================================
 
