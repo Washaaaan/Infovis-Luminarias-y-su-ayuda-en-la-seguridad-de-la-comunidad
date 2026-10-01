@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://4jsvssx3wc6d" path="res://Scripts/grafico_comuna.gd" id="6_grafico"]
 [ext_resource type="AudioStream" uid="uid://c6tqtqni68uao" path="res://sonidos/peligro.mp3" id="7_peligro"]
 [ext_resource type="Shader" uid="uid://da3cgqsrqv2uu" path="res://Shaders/fondo.gdshader" id="8_fondo"]
+[ext_resource type="Script" path="res://Scripts/tooltip_comuna.gd" id="9_tooltip"]
+[ext_resource type="AudioStream" path="res://sonidos/safe.mp3" id="10_seguro"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fondo"]
 shader = ExtResource("8_fondo")
@@ -710,6 +712,10 @@ layout_mode = 2
 stream = ExtResource("7_peligro")
 volume_db = -18.0
 
+[node name="AlertaSegura" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("10_seguro")
+volume_db = -22.0
+
 [node name="GraficoComuna" type="Control" parent="UI" unique_id=1465768104]
 visible = false
 layout_mode = 3
@@ -730,3 +736,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("5_ctrlanio")
+
+[node name="TooltipComuna" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+z_index = 100
+mouse_filter = 2
+script = ExtResource("9_tooltip")

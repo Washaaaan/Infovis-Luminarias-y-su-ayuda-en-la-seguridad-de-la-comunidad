@@ -10,8 +10,9 @@ extends CanvasLayer
 
 @export var camara: Camera2D
 
-# Nivel de color (0-1) desde el cual una comuna se considera "peligrosa".
-@export var umbral_peligro: float = 0.3
+# Margen (escala normalizada 0-1) alrededor del promedio que separa
+# la zona de peligro de la zona segura. En el medio: silencio.
+@export var margen_medio: float = 0.05
 
 # Intervalo máximo entre sonidos (segundos), en el umbral de peligro.
 @export var intervalo_max: float = 6.0
@@ -19,6 +20,7 @@ extends CanvasLayer
 @onready var panel: Control = $Panel
 @onready var grafico: Control = $GraficoComuna
 @onready var alerta: AudioStreamPlayer = $AlertaPeligro
+@onready var alerta_segura: AudioStreamPlayer = $AlertaSegura
 
 var comuna_actual: String = ""
 
@@ -67,29 +69,120 @@ func _crear_leyenda() -> void:
 # ============================================================
 
 func _configurar_alerta() -> void:
-	if alerta == null:
-		return
-	var s := alerta.stream
-	if s is AudioStreamWAV:
-		s.loop_mode = AudioStreamWAV.LOOP_FORWARD
-		s.loop_begin = 0
-		s.loop_end = s.data.size() / 2
+	if alerta != null:
+		var sp := alerta.stream
+		if sp is AudioStreamWAV:
+			sp.loop_mode = AudioStreamWAV.LOOP_FORWARD
+			sp.loop_begin = 0
+			sp.loop_end = sp.data.size() / 2
+		elif sp is AudioStreamMP3:
+			sp.loop = true
+
+	if alerta_segura != null:
+		var ss := alerta_segura.stream
+		if ss is AudioStreamMP3:
+			ss.loop = true
+		elif ss is AudioStreamWAV:
+			ss.loop_mode = AudioStreamWAV.LOOP_FORWARD
+			ss.loop_begin = 0
+			ss.loop_end = ss.data.size() / 2
 
 
 func _actualizar_alerta() -> void:
+	_acumulado = 0.0
+
 	if alerta == null:
 		return
 
-	_acumulado = 0.0
-
 	if comuna_actual == "":
-		alerta.stop()
+		_detener_sonidos()
 		return
 
-	if _tasa_peligro() >= umbral_peligro:
-		alerta.play()
+	_aplicar_estado_sonoro()
+
+
+# ============================================================
+# UMBRALES ADAPTATIVOS (PROMEDIO +/- MARGEN)
+# ============================================================
+
+func _umbral_peligro() -> float:
+	return _promedio_tasa() + margen_medio
+
+
+func _umbral_seguro() -> float:
+	return _promedio_tasa() - margen_medio
+
+
+# Promedio de la métrica del modo sobre las 52 comunas.
+
+func _promedio_tasa() -> float:
+	if _comunas.is_empty():
+		return 0.0
+
+	var modo_area := 0
+
+	if _comuna_nodo != null:
+		var area_sel: Variant = _comuna_nodo.get_node_or_null("Area2D")
+		if area_sel != null:
+			modo_area = area_sel.modo
+
+	var suma := 0.0
+	var cuenta := 0
+
+	for comuna in _comunas:
+		var area: Variant = comuna.get_node_or_null("Area2D")
+		if area == null:
+			continue
+		var valor: float = (
+			area.nivel_delitos_persona
+			if modo_area == 2
+			else area.nivel_delitos_zona
+		)
+		suma += valor
+		cuenta += 1
+
+	if cuenta == 0:
+		return 0.0
+
+	return suma / float(cuenta)
+
+
+# Decide y aplica el sonido que corresponde ahora (safe / silencio).
+# El peligro se dispara por intervalos en _process.
+
+func _aplicar_estado_sonoro() -> void:
+	if comuna_actual == "" or _comuna_nodo == null:
+		_detener_sonidos()
+		return
+
+	var tasa := _tasa_peligro()
+
+	if tasa >= _umbral_peligro():
+		_detener_seguro()
+	elif tasa < _umbral_seguro():
+		_iniciar_seguro()
 	else:
+		_detener_sonidos()
+
+
+func _iniciar_seguro() -> void:
+	if alerta != null and alerta.playing:
 		alerta.stop()
+
+	if alerta_segura != null and not alerta_segura.playing:
+		alerta_segura.play()
+
+
+func _detener_seguro() -> void:
+	if alerta_segura != null and alerta_segura.playing:
+		alerta_segura.stop()
+
+
+func _detener_sonidos() -> void:
+	if alerta != null and alerta.playing:
+		alerta.stop()
+
+	_detener_seguro()
 
 
 # ============================================================
@@ -107,19 +200,24 @@ func _process(delta: float) -> void:
 		return
 
 	var tasa := _tasa_peligro()
+	var umbral_p := _umbral_peligro()
 
-	if tasa < umbral_peligro:
-		if alerta.playing:
-			alerta.stop()
+	if tasa < umbral_p:
+		# No es peligro: decidir entre seguro y silencio.
+		_aplicar_estado_sonoro()
 		_acumulado = 0.0
 		return
+
+	# Peligro.
+	_detener_seguro()
 
 	_intervalo = lerpf(
 		intervalo_max,
 		1.0,
 		_factor_peligro(
 			tasa,
-			_tasa_maxima()
+			_tasa_maxima(),
+			umbral_p
 		)
 	)
 
@@ -179,14 +277,15 @@ func _tasa_maxima() -> float:
 
 func _factor_peligro(
 	tasa: float,
-	tasa_max: float
+	tasa_max: float,
+	umbral: float
 ) -> float:
-	if tasa_max <= umbral_peligro:
+	if tasa_max <= umbral:
 		return 1.0
 
 	return clampf(
-		(tasa - umbral_peligro) /
-		(tasa_max - umbral_peligro),
+		(tasa - umbral) /
+		(tasa_max - umbral),
 		0.0,
 		1.0
 	)
@@ -305,5 +404,4 @@ func ocultar() -> void:
 	comuna_actual = ""
 	_comuna_nodo = null
 	_acumulado = 0.0
-	if alerta != null:
-		alerta.stop()
+	_detener_sonidos()
