@@ -81,14 +81,14 @@ func _texto_modo() -> String:
 
 	if _modo == 1:
 
-		return "Mapa: Luminarias ↔ Delitos"
+		return "Mapa: Luminarias vs Delitos"
 
 	if _modo == 2:
 
-		return "Mapa: Ingreso ↔ Delitos"
+		return "Mapa: Ingreso vs Delitos"
 
 
-	return "Mapa: Personas ↔ Delitos"
+	return "Mapa: Personas vs Delitos"
 
 
 func _on_modo_presionado() -> void:
